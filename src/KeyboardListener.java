@@ -4,8 +4,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyboardListener extends Frame implements KeyListener {
+    private TrickLibrary trickLibrary = new TrickLibrary();
     private Label l;
     private TextArea area;
+    private boolean isRightKeyPressed = false;
+    private boolean isLeftKeyPressed = false;
+    private boolean isDownKeyPressed = false;
+    private boolean isUpKeyPressed = false;
+    private boolean isSpaceBarPressed = false;
     public KeyboardListener() {
         // creating the label
         l = new Label();
@@ -28,31 +34,89 @@ public class KeyboardListener extends Frame implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        int keyCode = e.getKeyCode();
+        switch(e.getKeyCode()) {
+            case KeyEvent.VK_UP:
+                break;
+            case KeyEvent.VK_DOWN:
+                // handle down
+                break;
+            case KeyEvent.VK_LEFT:
+                // handle left
+                break;
+            case KeyEvent.VK_RIGHT :
+                // handle right
+                break;
+            case 'a' :
+                System.out.println("a");
+                break;
+        }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
         {
+            isRightKeyPressed = true;
             System.out.println("right key pressed");
         }
         else if (e.getKeyCode() == KeyEvent.VK_LEFT)
         {
+            isLeftKeyPressed = true;
             System.out.println("left key pressed");
         }
         else if (e.getKeyCode() == KeyEvent.VK_UP)
         {
+            isUpKeyPressed = true;
             System.out.println("up key pressed");
         }
         else if (e.getKeyCode() == KeyEvent.VK_DOWN)
         {
+            isDownKeyPressed = true;
             System.out.println("down key pressed");
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_SPACE)
+        {
+            isSpaceBarPressed = true;
+            System.out.println("space bar pressed");
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        detectTricks();
 
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+        {
+            isRightKeyPressed = false;
+            //System.out.println("right key released");
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_LEFT)
+        {
+            isLeftKeyPressed = false;
+            //System.out.println("left key released");
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_UP)
+        {
+            isUpKeyPressed = false;
+            //System.out.println("up key released");
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_DOWN)
+        {
+            isDownKeyPressed = false;
+            //System.out.println("down key released");
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_SPACE)
+        {
+            isSpaceBarPressed = false;
+        }
+    }
+
+    public void detectTricks()
+    {
+        if (isSpaceBarPressed && isRightKeyPressed)
+        {
+            trickLibrary.rightFlip();
+        }
     }
 }
