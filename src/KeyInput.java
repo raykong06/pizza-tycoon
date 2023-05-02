@@ -1,10 +1,11 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeyboardListener extends Frame implements KeyListener {
+public class KeyInput extends Frame implements KeyListener {
     private TrickLibrary trickLibrary = new TrickLibrary();
+    private PenguinMechanics penguinMechanics = new PenguinMechanics();
+    private double startTime = 0;
     private Label l;
     private TextArea area;
     private boolean isRightKeyPressed = false;
@@ -12,7 +13,7 @@ public class KeyboardListener extends Frame implements KeyListener {
     private boolean isDownKeyPressed = false;
     private boolean isUpKeyPressed = false;
     private boolean isSpaceBarPressed = false;
-    public KeyboardListener() {
+    public KeyInput() {
         // creating the label
         l = new Label();
 // setting the location of the label in frame
@@ -37,8 +38,10 @@ public class KeyboardListener extends Frame implements KeyListener {
         int keyCode = e.getKeyCode();
         switch(e.getKeyCode()) {
             case KeyEvent.VK_UP:
+                System.out.println("up");
                 break;
             case KeyEvent.VK_DOWN:
+                System.out.println("down");
                 // handle down
                 break;
             case KeyEvent.VK_LEFT:
@@ -46,9 +49,6 @@ public class KeyboardListener extends Frame implements KeyListener {
                 break;
             case KeyEvent.VK_RIGHT :
                 // handle right
-                break;
-            case 'a' :
-                System.out.println("a");
                 break;
         }
     }
@@ -77,8 +77,12 @@ public class KeyboardListener extends Frame implements KeyListener {
         }
         else if (e.getKeyCode() == KeyEvent.VK_SPACE)
         {
-            isSpaceBarPressed = true;
-            System.out.println("space bar pressed");
+            if (!isSpaceBarPressed && System.currentTimeMillis() - startTime > 2000)
+            {
+                isSpaceBarPressed = true;
+                startTime = System.currentTimeMillis();
+                System.out.println("space bar pressed");
+            }
         }
     }
 
@@ -108,7 +112,7 @@ public class KeyboardListener extends Frame implements KeyListener {
         }
         else if (e.getKeyCode() == KeyEvent.VK_SPACE)
         {
-            isSpaceBarPressed = false;
+            //isSpaceBarPressed = false;
         }
     }
 
@@ -118,5 +122,9 @@ public class KeyboardListener extends Frame implements KeyListener {
         {
             trickLibrary.rightFlip();
         }
+    }
+    public void inputTick()
+    {
+        penguinMechanics.tick();
     }
 }
