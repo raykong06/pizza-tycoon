@@ -113,6 +113,7 @@ public class KeyInput extends Frame implements KeyListener {
         else if (e.getKeyCode() == KeyEvent.VK_SPACE)
         {
             //isSpaceBarPressed = false;
+            //System.out.println("released");
         }
     }
 
