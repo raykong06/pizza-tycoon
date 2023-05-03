@@ -74,6 +74,9 @@ public class Window extends Canvas implements Runnable {
             }
             render();
             frames++;
+
+            // allows for frames per second, using the system timer
+            // used for resetting the frames and updates
             if (System.currentTimeMillis() - timer > 1000)
             {
                 timer += 1000;
