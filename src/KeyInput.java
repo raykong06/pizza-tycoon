@@ -41,17 +41,17 @@ public class KeyInput implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
         {
-            window.getPlayer().setVelX(1);
+            window.getPlayer().setVelX(window.getPlayer().getSpeed());
             rightKeyPressed = true;
         }
         else if (e.getKeyCode() == KeyEvent.VK_LEFT)
         {
-            window.getPlayer().setVelX(-1);
+            window.getPlayer().setVelX(-window.getPlayer().getSpeed());
             rightKeyPressed = false;
         }
         else if (e.getKeyCode() == KeyEvent.VK_UP)
         {
-            window.getPlayer().setVelY(-1);
+            window.getPlayer().setVelY(-window.getPlayer().getJumpVel());
             upKeyPressed = true;
         }
         else if (e.getKeyCode() == KeyEvent.VK_DOWN)
