@@ -2,35 +2,19 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeyInput extends Frame implements KeyListener {
+public class KeyInput implements KeyListener {
     private TrickLibrary trickLibrary = new TrickLibrary();
     private PenguinMechanics penguinMechanics = new PenguinMechanics();
     private double startTime = 0;
-    private Label l;
-    private TextArea area;
-    private boolean isRightKeyPressed = false;
-    private boolean isLeftKeyPressed = false;
-    private boolean isDownKeyPressed = false;
-    private boolean isUpKeyPressed = false;
-    private boolean isSpaceBarPressed = false;
-    public KeyInput() {
-        // creating the label
-        l = new Label();
-// setting the location of the label in frame
-        l.setBounds (20, 50, 100, 20);
-// creating the text area
-        area = new TextArea();
-// setting the location of text area
-        area.setBounds (20, 80, 300, 300);
-// adding the KeyListener to the text area
-        area.addKeyListener(this);
-// adding the label and text area to the frame
-        add(l);
-        add(area);
-// setting the size, layout and visibility of frame
-        setSize (400, 400);
-        setLayout (null);
-        setVisible (true);
+    private boolean rightKeyPressed = false;
+    private boolean upKeyPressed = false;
+
+    private Window window;
+
+    public KeyInput(Window window)
+    {
+        this.window = window;
+        window.addKeyListener(this);
     }
 
     @Override
@@ -57,32 +41,26 @@ public class KeyInput extends Frame implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
         {
-            isRightKeyPressed = true;
-            System.out.println("right key pressed");
+            window.getPlayer().setVelX(1);
+            rightKeyPressed = true;
         }
         else if (e.getKeyCode() == KeyEvent.VK_LEFT)
         {
-            isLeftKeyPressed = true;
-            System.out.println("left key pressed");
+            window.getPlayer().setVelX(-1);
+            rightKeyPressed = false;
         }
         else if (e.getKeyCode() == KeyEvent.VK_UP)
         {
-            isUpKeyPressed = true;
-            System.out.println("up key pressed");
+            window.getPlayer().setVelY(-1);
+            upKeyPressed = true;
         }
         else if (e.getKeyCode() == KeyEvent.VK_DOWN)
         {
-            isDownKeyPressed = true;
-            System.out.println("down key pressed");
+            window.getPlayer().setVelY(1);
+            upKeyPressed = false;
         }
         else if (e.getKeyCode() == KeyEvent.VK_SPACE)
         {
-            if (!isSpaceBarPressed && System.currentTimeMillis() - startTime > 2000)
-            {
-                isSpaceBarPressed = true;
-                startTime = System.currentTimeMillis();
-                System.out.println("space bar pressed");
-            }
         }
     }
 
@@ -90,39 +68,29 @@ public class KeyInput extends Frame implements KeyListener {
     public void keyReleased(KeyEvent e) {
         detectTricks();
 
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT && rightKeyPressed)
         {
-            isRightKeyPressed = false;
-            //System.out.println("right key released");
+            window.getPlayer().setVelX(0);
         }
-        else if (e.getKeyCode() == KeyEvent.VK_LEFT)
+        else if (e.getKeyCode() == KeyEvent.VK_LEFT && !rightKeyPressed)
         {
-            isLeftKeyPressed = false;
-            //System.out.println("left key released");
+            window.getPlayer().setVelX(0);
         }
-        else if (e.getKeyCode() == KeyEvent.VK_UP)
+        else if (e.getKeyCode() == KeyEvent.VK_UP && upKeyPressed)
         {
-            isUpKeyPressed = false;
-            //System.out.println("up key released");
+            window.getPlayer().setVelY(0);
         }
-        else if (e.getKeyCode() == KeyEvent.VK_DOWN)
+        else if (e.getKeyCode() == KeyEvent.VK_DOWN && !upKeyPressed)
         {
-            isDownKeyPressed = false;
-            //System.out.println("down key released");
+            window.getPlayer().setVelY(0);
         }
         else if (e.getKeyCode() == KeyEvent.VK_SPACE)
         {
-            //isSpaceBarPressed = false;
-            //System.out.println("released");
         }
     }
 
     public void detectTricks()
     {
-        if (isSpaceBarPressed && isRightKeyPressed)
-        {
-            trickLibrary.rightFlip();
-        }
     }
     public void inputTick()
     {

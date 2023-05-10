@@ -8,6 +8,9 @@ public class Window extends Canvas implements Runnable {
     private Thread thread;
     private boolean running = false;
 
+    private Player player = new Player(100, 100, 64, 64);
+    private KeyInput keyInput = new KeyInput(this);
+
     // Runs everytime a new window is created
     public Window(String title)
     {
@@ -47,6 +50,7 @@ public class Window extends Canvas implements Runnable {
     }
 
     // begins when start calls the run method
+    // basic run method, dont need to know how it works
     @Override
     public void run()
     {
@@ -89,7 +93,7 @@ public class Window extends Canvas implements Runnable {
 
     // updates the window
     public void tick(){
-
+        player.tick();
     }
 
     // paints onto the window
@@ -101,11 +105,18 @@ public class Window extends Canvas implements Runnable {
             this.createBufferStrategy(2);
             bs = this.getBufferStrategy();
         }
-        Graphics g = bs.getDrawGraphics();
-        g.setColor(Color.white);
-        g.fillRect(0,0, this.getWidth(), this.getHeight());
+        Graphics graphics = bs.getDrawGraphics();
+        graphics.setColor(Color.white);
+        graphics.fillRect(0,0, this.getWidth(), this.getHeight());
+
+        player.render(graphics);
 
         bs.show();
-        g.dispose();
+        graphics.dispose();
+    }
+
+    public Player getPlayer()
+    {
+        return player;
     }
 }
