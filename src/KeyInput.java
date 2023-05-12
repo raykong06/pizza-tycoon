@@ -49,10 +49,9 @@ public class KeyInput implements KeyListener {
             window.getPlayer().setVelX(-window.getPlayer().getSpeed());
             rightKeyPressed = false;
         }
-        else if (e.getKeyCode() == KeyEvent.VK_UP)
+        else if (e.getKeyCode() == KeyEvent.VK_UP && window.getPlayer().getVelY() == 0)
         {
             window.getPlayer().setVelY(-window.getPlayer().getJumpVel());
-            upKeyPressed = true;
         }
         else if (e.getKeyCode() == KeyEvent.VK_DOWN)
         {
@@ -76,10 +75,10 @@ public class KeyInput implements KeyListener {
         {
             window.getPlayer().setVelX(0);
         }
-        else if (e.getKeyCode() == KeyEvent.VK_UP && upKeyPressed)
-        {
-            window.getPlayer().setVelY(0);
-        }
+        //else if (e.getKeyCode() == KeyEvent.VK_UP && upKeyPressed)
+        //{
+        //    window.getPlayer().setVelY(0);
+        //}
         else if (e.getKeyCode() == KeyEvent.VK_DOWN && !upKeyPressed)
         {
             window.getPlayer().setVelY(0);

@@ -21,7 +21,7 @@ public class Player {
         this.height = height;
 
         gravity = 4;
-        jumpVel = 4;
+        jumpVel = 6;
         speed = 2;
     }
 
@@ -29,16 +29,19 @@ public class Player {
     {
         x += velX;
 
-        if (y + velY < 500)
-        {
-            y += velY;
-        }
-
         if (velY < gravity)
         {
             velY += 0.1;
         }
 
+        if (y + velY < 500)
+        {
+            y += velY;
+        }
+        else
+        {
+            velY = 0;
+        }
     }
 
     public void render(Graphics graphics)
@@ -47,23 +50,27 @@ public class Player {
         graphics.fillRect((int)x, (int)y, width, height);
     }
 
-    public void setVelX(double newVel)
-    {
-        velX = newVel;
+    public double getVelX() {
+        return velX;
     }
 
-    public void setVelY(double newVel)
-    {
-        velY = newVel;
+    public void setVelX(double velX) {
+        this.velX = velX;
     }
 
-    public double getJumpVel()
-    {
+    public double getVelY() {
+        return velY;
+    }
+
+    public void setVelY(double velY) {
+        this.velY = velY;
+    }
+
+    public double getJumpVel() {
         return jumpVel;
     }
 
-    public int getSpeed()
-    {
+    public int getSpeed() {
         return speed;
     }
 }
