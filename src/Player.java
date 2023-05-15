@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 
 public class Player {
@@ -12,6 +13,7 @@ public class Player {
     private double jumpVel;
     private double gravity;
     private int speed;
+    private Image display;
 
     public Player(int x, int y, int width, int height)
     {
@@ -23,6 +25,8 @@ public class Player {
         gravity = 4;
         jumpVel = 6;
         speed = 2;
+
+        display = new ImageIcon("player_motion1.png").getImage();
     }
 
     public void tick()
@@ -46,8 +50,9 @@ public class Player {
 
     public void render(Graphics graphics)
     {
-        graphics.setColor(Color.red);
-        graphics.fillRect((int)x, (int)y, width, height);
+        //graphics.setColor(Color.red);
+        //graphics.fillRect((int)x, (int)y, width, height);
+        graphics.drawImage(display, (int)x, (int)y, null);
     }
 
     public double getVelX() {

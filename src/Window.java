@@ -10,6 +10,7 @@ public class Window extends Canvas implements Runnable {
 
     private Player player = new Player(100, 100, 64, 64);
     private KeyInput keyInput = new KeyInput(this);
+    private LevelHandler levelHandler = new LevelHandler();
 
     // Runs everytime a new window is created
     public Window(String title)
