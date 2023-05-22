@@ -23,8 +23,8 @@ public class Player extends JPanel{
         this.height = height;
 
         gravity = 4;
-        jumpVel = 6;
-        speed = 2;
+        jumpVel = 10;
+        speed = 4;
 
         display = new ImageIcon(this.getClass()
                 .getResource("player_motion1.png"));
@@ -36,7 +36,7 @@ public class Player extends JPanel{
 
         if (velY < gravity)
         {
-            velY += 0.1;
+            velY += 0.45;
         }
 
         if (y + velY < 388)
