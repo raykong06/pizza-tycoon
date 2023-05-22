@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Player {
+public class Player extends JPanel{
 
     private double x;
     private double y;
@@ -13,7 +13,7 @@ public class Player {
     private double jumpVel;
     private double gravity;
     private int speed;
-    private Image display;
+    private ImageIcon display;
 
     public Player(int x, int y, int width, int height)
     {
@@ -26,7 +26,8 @@ public class Player {
         jumpVel = 6;
         speed = 2;
 
-        display = new ImageIcon("player_motion1.png").getImage();
+        display = new ImageIcon(this.getClass()
+                .getResource("player_motion1.png"));
     }
 
     public void tick()
@@ -38,7 +39,7 @@ public class Player {
             velY += 0.1;
         }
 
-        if (y + velY < 500)
+        if (y + velY < 388)
         {
             y += velY;
         }
@@ -48,11 +49,12 @@ public class Player {
         }
     }
 
-    public void render(Graphics graphics)
+    public void paintComponent(Graphics graphics)
     {
+        super.paintComponent(graphics);
+        display.paintIcon(this, graphics, (int)x, (int)y);
         //graphics.setColor(Color.red);
         //graphics.fillRect((int)x, (int)y, width, height);
-        graphics.drawImage(display, (int)x, (int)y, null);
     }
 
     public double getVelX() {

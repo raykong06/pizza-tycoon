@@ -11,6 +11,7 @@ public class Window extends Canvas implements Runnable {
     private Player player = new Player(100, 100, 64, 64);
     private KeyInput keyInput = new KeyInput(this);
     private LevelHandler levelHandler = new LevelHandler();
+    private JLabel imageLabel;
 
     // Runs everytime a new window is created
     public Window(String title)
@@ -110,7 +111,7 @@ public class Window extends Canvas implements Runnable {
         graphics.setColor(Color.white);
         graphics.fillRect(0,0, this.getWidth(), this.getHeight());
 
-        player.render(graphics);
+        player.paintComponent(graphics);
 
         bs.show();
         graphics.dispose();

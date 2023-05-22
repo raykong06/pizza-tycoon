@@ -41,7 +41,7 @@ public class KeyInput implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
         {
-            window.getPlayer().setVelX(window.getPlayer().getSpeed());
+            window.getPlayer().setVelX(4);
             rightKeyPressed = true;
         }
         else if (e.getKeyCode() == KeyEvent.VK_LEFT)
