@@ -27,7 +27,7 @@ public class Player extends JPanel{
         speed = 4;
 
         display = new ImageIcon(this.getClass()
-                .getResource("player_motion1.png"));
+                .getResource("img/player_motion1.png"));
     }
 
     public void tick()
