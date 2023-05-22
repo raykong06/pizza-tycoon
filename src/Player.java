@@ -26,8 +26,7 @@ public class Player extends JPanel{
         jumpVel = 10;
         speed = 4;
 
-        display = new ImageIcon(this.getClass()
-                .getResource("img/player_motion1.png"));
+        display = new ImageIcon("img/player_motion2.png");
     }
 
     public void tick()
@@ -39,7 +38,7 @@ public class Player extends JPanel{
             velY += 0.45;
         }
 
-        if (y + velY < 388)
+        if (y + velY < 412)
         {
             y += velY;
         }
