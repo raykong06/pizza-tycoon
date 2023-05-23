@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Player extends JPanel{
 
@@ -13,7 +14,16 @@ public class Player extends JPanel{
     private double jumpVel;
     private double gravity;
     private int speed;
+    private ImageIcon motion1;
+    private ImageIcon motion2;
+    private ImageIcon motion3;
+    private ImageIcon motion4;
+    private ImageIcon motion5;
+    private ImageIcon motion6;
+    private ArrayList<ImageIcon> imgArr;
     private ImageIcon display;
+    private int spriteCounter;
+    private int spriteNum;
 
     public Player(int x, int y, int width, int height)
     {
@@ -26,7 +36,24 @@ public class Player extends JPanel{
         jumpVel = 10;
         speed = 4;
 
-        display = new ImageIcon("img/player_motion2.png");
+        motion1 = new ImageIcon("img/player_motion1.png");
+        motion2 = new ImageIcon("img/player_motion2.png");
+        motion3 = new ImageIcon("img/player_motion3.png");
+        motion4 = new ImageIcon("img/player_motion4.png");
+        motion5 = new ImageIcon("img/player_motion5.png");
+        motion6 = new ImageIcon("img/player_motion6.png");
+        display = motion1;
+
+        imgArr = new ArrayList<ImageIcon>();
+        imgArr.add(motion1);
+        imgArr.add(motion2);
+        imgArr.add(motion3);
+        imgArr.add(motion4);
+        imgArr.add(motion5);
+        imgArr.add(motion6);
+
+        spriteCounter = 0;
+        spriteNum = 0;
     }
 
     public void tick()
@@ -50,10 +77,25 @@ public class Player extends JPanel{
 
     public void paintComponent(Graphics graphics)
     {
+        display = imgArr.get(spriteNum);
         super.paintComponent(graphics);
         display.paintIcon(this, graphics, (int)x, (int)y);
+
         //graphics.setColor(Color.red);
         //graphics.fillRect((int)x, (int)y, width, height);
+
+        spriteCounter++;
+        if (spriteCounter > 200) {
+            if (spriteNum < 5)
+            {
+                spriteNum++;
+            }
+            else
+            {
+                spriteNum = 0;
+            }
+            spriteCounter = 0;
+        }
     }
 
     public double getVelX() {
