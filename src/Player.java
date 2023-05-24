@@ -65,7 +65,7 @@ public class Player extends JPanel{
             velY += 0.45;
         }
 
-        if (y + velY < 412)
+        if (y + velY < 300)
         {
             y += velY;
         }

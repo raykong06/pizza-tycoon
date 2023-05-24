@@ -8,7 +8,7 @@ public class Window extends Canvas implements Runnable {
     private Thread thread;
     private boolean running = false;
 
-    private Player player = new Player(100, 100, 64, 64);
+    private Player player = new Player(350, 300, 64, 64);
     private KeyInput keyInput = new KeyInput(this);
     private LevelHandler levelHandler = new LevelHandler();
     private JLabel imageLabel;
