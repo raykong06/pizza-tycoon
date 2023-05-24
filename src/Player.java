@@ -85,7 +85,18 @@ public class Player extends JPanel{
         //graphics.fillRect((int)x, (int)y, width, height);
 
         spriteCounter++;
-        if (spriteCounter > 200) {
+        if (spriteNum == 1 && spriteCounter > 500)
+        {
+            spriteNum++;
+            spriteCounter = 0;
+        }
+        else if (spriteNum == 0 && spriteCounter > 250)
+        {
+            spriteNum++;
+            spriteCounter = 0;
+        }
+        else if (spriteNum > 1 && spriteCounter > 300)
+        {
             if (spriteNum < 5)
             {
                 spriteNum++;
