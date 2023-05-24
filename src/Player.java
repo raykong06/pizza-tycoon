@@ -24,6 +24,7 @@ public class Player extends JPanel{
     private ImageIcon display;
     private int spriteCounter;
     private int spriteNum;
+    private PlayerScoreBoard playerScoreBoard = new PlayerScoreBoard();
 
     public Player(int x, int y, int width, int height)
     {
@@ -80,12 +81,13 @@ public class Player extends JPanel{
         display = imgArr.get(spriteNum);
         super.paintComponent(graphics);
         display.paintIcon(this, graphics, (int)x, (int)y);
+        playerScoreBoard.paintComponent(graphics);
 
         //graphics.setColor(Color.red);
         //graphics.fillRect((int)x, (int)y, width, height);
 
         spriteCounter++;
-        if (spriteNum == 1 && spriteCounter > 500)
+        if (spriteNum == 1 && spriteCounter > 450)
         {
             spriteNum++;
             spriteCounter = 0;
