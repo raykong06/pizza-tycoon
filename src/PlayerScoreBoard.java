@@ -18,7 +18,7 @@ public class PlayerScoreBoard extends JPanel {
 
         graphics2D.setPaint(Color.black);
         graphics2D.setFont(new Font("Oswald", Font.BOLD, 50));
-        int actual_width = graphics2D.getFontMetrics().stringWidth(String.valueOf(playerPoints));
-        graphics2D.drawString(String.valueOf(playerPoints), 750 - actual_width, 100);
+        int actualWidth = graphics2D.getFontMetrics().stringWidth(String.valueOf(playerPoints));
+        graphics2D.drawString(String.valueOf(playerPoints), 750 - actualWidth, 100);
     }
 }
