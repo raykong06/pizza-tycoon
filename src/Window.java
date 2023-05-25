@@ -75,11 +75,15 @@ public class Window extends Canvas implements Runnable {
             while (delta >= 1)
             {
                 tick();
+                // updates at approx 60 ticks per second
+                render();
+                // frames is # of times rendered per second
+                frames++;
                 updates++;
                 delta--;
             }
-            render();
-            frames++;
+            // renders as fast as possible
+            //render();
 
             // allows for frames per second, using the system timer
             // used for resetting the frames and updates
