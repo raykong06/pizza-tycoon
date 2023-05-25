@@ -11,7 +11,7 @@ public class Window extends Canvas implements Runnable {
     private Player player = new Player(350, 300, 64, 64);
     private KeyInput keyInput = new KeyInput(this);
     private LevelHandler levelHandler = new LevelHandler();
-    private JLabel imageLabel;
+    //private JLabel imageLabel;
 
     // Runs everytime a new window is created
     public Window(String title)
