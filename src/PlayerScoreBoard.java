@@ -4,6 +4,7 @@ import java.awt.*;
 public class PlayerScoreBoard extends JPanel {
     private int playerPoints;
     private int timer;
+    private static final long startTime = System.currentTimeMillis();
 
     public PlayerScoreBoard()
     {
@@ -20,5 +21,21 @@ public class PlayerScoreBoard extends JPanel {
         graphics2D.setFont(new Font("Oswald", Font.BOLD, 50));
         int actualWidth = graphics2D.getFontMetrics().stringWidth(String.valueOf(playerPoints));
         graphics2D.drawString(String.valueOf(playerPoints), 750 - actualWidth, 100);
+
+        long elapsedTime = getTimeElapsed();
+        if (timer - elapsedTime < 10)
+        {
+            graphics2D.drawString("0:0" + (int)(timer - elapsedTime), 50, 100);
+        }
+        else
+        {
+            graphics2D.drawString("0:" + (int)(timer - elapsedTime), 50, 100);
+        }
     }
+
+    public long getTimeElapsed()
+    {
+        return (System.currentTimeMillis() - startTime) / 1000;
+    }
+
 }

@@ -134,4 +134,9 @@ public class Player extends JPanel{
     public int getSpeed() {
         return speed;
     }
+
+    public PlayerScoreBoard getPlayerScoreBoard()
+    {
+        return playerScoreBoard;
+    }
 }
