@@ -13,14 +13,16 @@ public class MenuHandler extends JPanel{
     {
         super.paintComponent(graphics);
         graphics.setColor(Color.black);
+        String title = "Snow Surfer";
         String startGame = "Start a New Game";
-        String optionGame = "Options";
+        String options = "Options";
         String exitGame = "Exit Game";
-        FontMetrics fontMetrics = graphics.getFontMetrics(graphics.getFont());
-        graphics.setFont(new Font("Oswald", Font.BOLD, 75));
-        graphics.drawString("Start the Game!", window.getWidth() / 2 - (fontMetrics.stringWidth(startGame) / 2), 200);
-        graphics.drawString("Options", window.getWidth() / 2 - (fontMetrics.stringWidth(optionGame) / 2), 350);
-        graphics.drawString("Exit the Game!", window.getWidth() / 2 - (fontMetrics.stringWidth(exitGame) / 2), 500);
+        graphics.setFont(new Font("Impact", Font.PLAIN, 50));
+        graphics.drawString(title, window.getWidth() / 2 - (graphics.getFontMetrics().stringWidth(title) / 2), 100);
+        graphics.setFont(new Font("Oswald", Font.PLAIN, 25));
+        graphics.drawString(startGame, window.getWidth() / 2 - (graphics.getFontMetrics().stringWidth(startGame) / 2), 275);
+        graphics.drawString(options, window.getWidth() / 2 - (graphics.getFontMetrics().stringWidth(options) / 2), 350);
+        graphics.drawString(exitGame, window.getWidth() / 2 - (graphics.getFontMetrics().stringWidth(exitGame) / 2), 425);
     }
 
     // used to update the menu

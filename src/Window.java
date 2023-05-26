@@ -22,12 +22,12 @@ public class Window extends Canvas implements Runnable {
         keyInput = new KeyInput(this);
         levelHandler = new LevelHandler();
         menuHandler = new MenuHandler(this);
-        gameState = 1;
+        gameState = 2;
 
         JFrame frame = new JFrame(title);
 
         // sets frame size
-        frame.setSize(1200, 900);
+        frame.setSize(1000, 750);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // makes the frame visible and sets frame properties
@@ -131,7 +131,7 @@ public class Window extends Canvas implements Runnable {
         }
         else if (gameState == 2)
         {
-            player.paintComponent(graphics);
+            menuHandler.paintComponent(graphics);
         }
         else if (gameState == 3)
         {
