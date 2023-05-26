@@ -6,8 +6,6 @@ public class Player extends JPanel{
 
     private double x;
     private double y;
-    private int width;
-    private int height;
 
     private double velX;
     private double velY;
@@ -24,14 +22,15 @@ public class Player extends JPanel{
     private ImageIcon display;
     private int spriteCounter;
     private int spriteNum;
-    private PlayerScoreBoard playerScoreBoard = new PlayerScoreBoard();
+    private PlayerScoreBoard playerScoreBoard;
+    private Window window;
 
-    public Player(int x, int y, int width, int height)
+    public Player(Window window)
     {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        this.window = window;
+        x = window.getWidth() / 2.0;
+        y = window.getHeight() / 2.0;
+        playerScoreBoard = new PlayerScoreBoard(window);
 
         gravity = 4;
         jumpVel = 10;
@@ -66,7 +65,7 @@ public class Player extends JPanel{
             velY += 0.45;
         }
 
-        if (y + velY < 300)
+        if (y + velY < window.getHeight() / 2.0)
         {
             y += velY;
         }

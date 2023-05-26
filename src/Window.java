@@ -6,26 +6,36 @@ public class Window extends Canvas implements Runnable {
 
     private static final long serialVersionUID = 1L;
     private Thread thread;
-    private boolean running = false;
+    private boolean running;
 
-    private Player player = new Player(350, 300, 64, 64);
-    private KeyInput keyInput = new KeyInput(this);
-    private LevelHandler levelHandler = new LevelHandler();
+    private Player player;
+    private KeyInput keyInput;
+    private LevelHandler levelHandler;
+    private MenuHandler menuHandler;
+    private int gameState;
     //private JLabel imageLabel;
 
     // Runs everytime a new window is created
     public Window(String title)
     {
+        running = false;
+        keyInput = new KeyInput(this);
+        levelHandler = new LevelHandler();
+        menuHandler = new MenuHandler(this);
+        gameState = 1;
+
         JFrame frame = new JFrame(title);
 
         // sets frame size
-        frame.setSize(800, 600);
+        frame.setSize(1200, 900);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // makes the frame visible and sets frame properties
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setVisible(true);
         frame.add(this);
+
+        player = new Player(this);
     }
 
     // Start the game
@@ -115,7 +125,18 @@ public class Window extends Canvas implements Runnable {
         graphics.setColor(Color.white);
         graphics.fillRect(0,0, this.getWidth(), this.getHeight());
 
-        player.paintComponent(graphics);
+        if (gameState == 1)
+        {
+            player.paintComponent(graphics);
+        }
+        else if (gameState == 2)
+        {
+            player.paintComponent(graphics);
+        }
+        else if (gameState == 3)
+        {
+            player.paintComponent(graphics);
+        }
 
         bs.show();
         graphics.dispose();
