@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Player extends JPanel{
 
-    private double x;
-    private double y;
+    private double xCoord;
+    private double yCoord;
 
     private double velX;
     private double velY;
@@ -28,8 +28,8 @@ public class Player extends JPanel{
     public Player(Window window)
     {
         this.window = window;
-        x = window.getWidth() / 2.0;
-        y = window.getHeight() / 2.0;
+        xCoord = window.getWidth() / 2.0;
+        yCoord = window.getHeight() / 2.0;
         playerScoreBoard = new PlayerScoreBoard(window);
 
         gravity = 4;
@@ -58,16 +58,16 @@ public class Player extends JPanel{
 
     public void tick()
     {
-        x += velX;
+        xCoord += velX;
 
         if (velY < gravity)
         {
             velY += 0.45;
         }
 
-        if (y + velY < window.getHeight() / 2.0)
+        if (yCoord + velY < window.getHeight() / 2.0)
         {
-            y += velY;
+            yCoord += velY;
         }
         else
         {
@@ -79,7 +79,7 @@ public class Player extends JPanel{
     {
         display = imgArr.get(spriteNum);
         super.paintComponent(graphics);
-        display.paintIcon(this, graphics, (int)x, (int)y);
+        display.paintIcon(this, graphics, (int)xCoord, (int)yCoord);
         playerScoreBoard.paintComponent(graphics);
 
         //graphics.setColor(Color.red);

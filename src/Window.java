@@ -21,7 +21,7 @@ public class Window extends Canvas implements Runnable {
         running = false;
         keyInput = new KeyInput(this);
         levelHandler = new LevelHandler();
-        menuHandler = new MenuHandler(this);
+        menuHandler = new MenuHandler("Snow Surfer");
         gameState = 2;
 
         JFrame frame = new JFrame(title);
@@ -131,7 +131,7 @@ public class Window extends Canvas implements Runnable {
         }
         else if (gameState == 2)
         {
-            menuHandler.paintComponent(graphics);
+            menuHandler.show();
         }
         else if (gameState == 3)
         {
