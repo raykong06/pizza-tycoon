@@ -132,6 +132,11 @@ public class Window extends Canvas implements Runnable {
         else if (gameState == 2)
         {
             menuHandler.show();
+            if (menuHandler.getOption() == 1)
+            {
+                gameState = 1;
+                menuHandler.hide();
+            }
         }
         else if (gameState == 3)
         {
