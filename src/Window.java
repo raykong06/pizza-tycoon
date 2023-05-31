@@ -7,11 +7,12 @@ public class Window extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
     private Thread thread;
     private boolean running;
-
+    private JFrame frame;
     private Player player;
     private KeyInput keyInput;
     private LevelHandler levelHandler;
-    private MenuHandler1 menuHandler1;
+    private MenuHandler menuHandler;
+    //private MenuHandler1 menuHandler1;
     private int gameState;
     //private JLabel imageLabel;
 
@@ -21,10 +22,11 @@ public class Window extends Canvas implements Runnable {
         running = false;
         keyInput = new KeyInput(this);
         levelHandler = new LevelHandler();
-        menuHandler1 = new MenuHandler1(this);
+        //menuHandler1 = new MenuHandler1(this);
+        menuHandler = new MenuHandler(title);
         gameState = 2;
 
-        JFrame frame = new JFrame(title);
+        frame = new JFrame(title);
 
         // sets frame size
         frame.setSize(1000, 750);
@@ -125,15 +127,20 @@ public class Window extends Canvas implements Runnable {
 
         if (gameState == 1)
         {
+            frame.setVisible(true);
             graphics.setColor(Color.white);
             graphics.fillRect(0,0, this.getWidth(), this.getHeight());
             player.paintComponent(graphics);
         }
         else if (gameState == 2)
         {
-            graphics.setColor(new Color(77, 110, 122));
-            graphics.fillRect(0,0, this.getWidth(), this.getHeight());
-            menuHandler1.paint(graphics);
+            frame.setVisible(false);
+            menuHandler.show();
+            if (menuHandler.getOption() == 1)
+            {
+                gameState = 1;
+                menuHandler.hide();
+            }
         }
         else if (gameState == 3)
         {
