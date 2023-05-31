@@ -22,7 +22,7 @@ public class Window extends Canvas implements Runnable {
         keyInput = new KeyInput(this);
         levelHandler = new LevelHandler();
         menuHandler1 = new MenuHandler1(this);
-        gameState = 1;
+        gameState = 2;
 
         JFrame frame = new JFrame(title);
 
@@ -133,7 +133,7 @@ public class Window extends Canvas implements Runnable {
         {
             graphics.setColor(new Color(77, 110, 122));
             graphics.fillRect(0,0, this.getWidth(), this.getHeight());
-            menuHandler1.paintComponent(graphics);
+            menuHandler1.paint(graphics);
         }
         else if (gameState == 3)
         {
