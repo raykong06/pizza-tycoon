@@ -11,7 +11,7 @@ public class Window extends Canvas implements Runnable {
     private Player player;
     private KeyInput keyInput;
     private LevelHandler levelHandler;
-    private MenuHandler menuHandler;
+    private MenuHandler1 menuHandler1;
     private int gameState;
     //private JLabel imageLabel;
 
@@ -21,8 +21,8 @@ public class Window extends Canvas implements Runnable {
         running = false;
         keyInput = new KeyInput(this);
         levelHandler = new LevelHandler();
-        menuHandler = new MenuHandler("Snow Surfer");
-        gameState = 2;
+        menuHandler1 = new MenuHandler1(this);
+        gameState = 1;
 
         JFrame frame = new JFrame(title);
 
@@ -122,21 +122,18 @@ public class Window extends Canvas implements Runnable {
             bs = this.getBufferStrategy();
         }
         Graphics graphics = bs.getDrawGraphics();
-        graphics.setColor(Color.white);
-        graphics.fillRect(0,0, this.getWidth(), this.getHeight());
 
         if (gameState == 1)
         {
+            graphics.setColor(Color.white);
+            graphics.fillRect(0,0, this.getWidth(), this.getHeight());
             player.paintComponent(graphics);
         }
         else if (gameState == 2)
         {
-            menuHandler.show();
-            if (menuHandler.getOption() == 1)
-            {
-                gameState = 1;
-                menuHandler.hide();
-            }
+            graphics.setColor(new Color(77, 110, 122));
+            graphics.fillRect(0,0, this.getWidth(), this.getHeight());
+            menuHandler1.paintComponent(graphics);
         }
         else if (gameState == 3)
         {

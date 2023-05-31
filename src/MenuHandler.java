@@ -22,7 +22,6 @@ public class MenuHandler extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 option = 1;
-                System.out.println("hii");
             }
         });
     }

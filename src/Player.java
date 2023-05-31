@@ -18,6 +18,7 @@ public class Player extends JPanel{
     private ImageIcon motion4;
     private ImageIcon motion5;
     private ImageIcon motion6;
+    private ImageIcon background;
     private ArrayList<ImageIcon> imgArr;
     private ImageIcon display;
     private int spriteCounter;
@@ -42,6 +43,7 @@ public class Player extends JPanel{
         motion4 = new ImageIcon("img/player_motion4.png");
         motion5 = new ImageIcon("img/player_motion5.png");
         motion6 = new ImageIcon("img/player_motion6.png");
+        background = new ImageIcon("img/playerbackground.jpg");
         display = motion1;
 
         imgArr = new ArrayList<ImageIcon>();
@@ -79,11 +81,10 @@ public class Player extends JPanel{
     {
         display = imgArr.get(spriteNum);
         super.paintComponent(graphics);
+        background.paintIcon(this, graphics, 0, 0);
         display.paintIcon(this, graphics, (int)xCoord, (int)yCoord);
         playerScoreBoard.paintComponent(graphics);
 
-        //graphics.setColor(Color.red);
-        //graphics.fillRect((int)x, (int)y, width, height);
 
         spriteCounter++;
         if (spriteNum == 1 && spriteCounter > 12)
