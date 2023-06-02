@@ -5,7 +5,7 @@ public class PlayerScoreBoard extends JPanel {
     private int playerPoints;
     private int timer;
     private Window window;
-    private static final long startTime = System.currentTimeMillis();
+    private static long startTime = System.currentTimeMillis();
 
     public PlayerScoreBoard(Window window)
     {
@@ -45,6 +45,11 @@ public class PlayerScoreBoard extends JPanel {
     public long getTimeElapsed()
     {
         return (System.currentTimeMillis() - startTime) / 1000;
+    }
+
+    public void setStartTime()
+    {
+        startTime = System.currentTimeMillis();
     }
 
 }

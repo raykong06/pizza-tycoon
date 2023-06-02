@@ -29,8 +29,8 @@ public class Player extends JPanel{
     public Player(Window window)
     {
         this.window = window;
-        xCoord = window.getWidth() / 2.0;
-        yCoord = window.getHeight() / 2.0;
+        xCoord = 1000 / 2.0;
+        yCoord = 750 / 2.0 - 50;
         playerScoreBoard = new PlayerScoreBoard(window);
 
         gravity = 4;

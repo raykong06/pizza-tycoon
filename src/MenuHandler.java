@@ -22,6 +22,8 @@ public class MenuHandler extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 option = 1;
+                PlayerScoreBoard playerScoreBoard = new PlayerScoreBoard(null);
+                playerScoreBoard.setStartTime();
             }
         });
     }
