@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
 public class Player extends JPanel{
@@ -79,13 +80,24 @@ public class Player extends JPanel{
 
     public void paintComponent(Graphics graphics)
     {
-        display = imgArr.get(spriteNum);
+        //display = imgArr.get(spriteNum);
         super.paintComponent(graphics);
-        background.paintIcon(this, graphics, 0, 0);
-        display.paintIcon(this, graphics, (int)xCoord, (int)yCoord);
+        //background.paintIcon(this, graphics, 0, 0);
+        //display.paintIcon(this, graphics, (int)xCoord, (int)yCoord);
         playerScoreBoard.paintComponent(graphics);
 
+        spriteCounter++;
+        int speed = 2;
 
+        Graphics2D graphics2D = (Graphics2D) graphics;
+        graphics2D.setPaint(new Color(244,203,146));
+        graphics2D.fill(new Ellipse2D.Double(-250 + (spriteCounter * speed), 550, 200, 150));
+        graphics2D.setStroke(new BasicStroke(10));
+        graphics2D.setPaint(new Color(196,134,1));
+        graphics2D.draw(new Ellipse2D.Double(-250 + (spriteCounter * speed), 550, 200, 150));
+
+
+        /*
         spriteCounter++;
         if (spriteNum == 1 && spriteCounter > 12)
         {
@@ -109,6 +121,8 @@ public class Player extends JPanel{
             }
             spriteCounter = 0;
         }
+
+         */
     }
 
     public double getVelX() {

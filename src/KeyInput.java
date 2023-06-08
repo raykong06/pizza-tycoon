@@ -1,10 +1,9 @@
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyInput implements KeyListener {
-    private TrickLibrary trickLibrary = new TrickLibrary();
-    private PenguinMechanics penguinMechanics = new PenguinMechanics();
+    //private TrickLibrary trickLibrary = new TrickLibrary();
+    //private pen penguinMechanics = new Pizza();
     private double startTime = 0;
     private boolean rightKeyPressed = false;
     private boolean upKeyPressed = false;
@@ -90,9 +89,5 @@ public class KeyInput implements KeyListener {
 
     public void detectTricks()
     {
-    }
-    public void inputTick()
-    {
-        penguinMechanics.tick();
     }
 }

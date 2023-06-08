@@ -29,11 +29,11 @@ public class Window extends Canvas implements Runnable {
         frame = new JFrame(title);
 
         // sets frame size
-        frame.setSize(1000, 750);
+        frame.setSize(1250, 750);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // makes the frame visible and sets frame properties
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setVisible(true);
         frame.add(this);
 

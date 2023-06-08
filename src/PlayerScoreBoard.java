@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 
 public class PlayerScoreBoard extends JPanel {
     private int playerPoints;
@@ -10,7 +11,7 @@ public class PlayerScoreBoard extends JPanel {
     public PlayerScoreBoard(Window window)
     {
         playerPoints = 0;
-        timer = 5;
+        timer = 60;
         this.window = window;
     }
 
