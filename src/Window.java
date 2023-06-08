@@ -9,7 +9,7 @@ public class Window extends Canvas implements Runnable {
     private boolean running;
     private JFrame frame;
     private Player player;
-    private KeyInput keyInput;
+    private MouseInput mouseInput;
     private LevelHandler levelHandler;
     private MenuHandler menuHandler;
     //private MenuHandler1 menuHandler1;
@@ -20,7 +20,8 @@ public class Window extends Canvas implements Runnable {
     public Window(String title)
     {
         running = false;
-        keyInput = new KeyInput(this);
+        player = new Player(this);
+        mouseInput = new MouseInput(this);
         levelHandler = new LevelHandler();
         //menuHandler1 = new MenuHandler1(this);
         menuHandler = new MenuHandler(title);
@@ -36,8 +37,6 @@ public class Window extends Canvas implements Runnable {
         frame.setResizable(true);
         frame.setVisible(true);
         frame.add(this);
-
-        player = new Player(this);
     }
 
     // Start the game

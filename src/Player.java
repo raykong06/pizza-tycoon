@@ -26,6 +26,8 @@ public class Player extends JPanel{
     private int spriteNum;
     private PlayerScoreBoard playerScoreBoard;
     private Window window;
+    private int pizzaX;
+    private int pizzaY;
 
     public Player(Window window)
     {
@@ -57,6 +59,9 @@ public class Player extends JPanel{
 
         spriteCounter = 0;
         spriteNum = 0;
+
+        pizzaX = -250;
+        pizzaY = 525;
     }
 
     public void tick()
@@ -97,7 +102,6 @@ public class Player extends JPanel{
         Graphics2D graphics2D = (Graphics2D) graphics;
 
         // Conveyor Belt
-
         graphics2D.setPaint(new Color(198,198,198));
         graphics2D.fillRect(-100,500,1400,300);
         graphics2D.setPaint(new Color(156,156,156));
@@ -112,6 +116,7 @@ public class Player extends JPanel{
             graphics2D.drawLine(conveyorLineX + (conveyorLineGap * i), 500, conveyorLineX - 25 + (conveyorLineGap * i), 700);
         }
 
+        // Stand
 
 
         // Pizza
@@ -120,6 +125,8 @@ public class Player extends JPanel{
         graphics2D.setStroke(new BasicStroke(10));
         graphics2D.setPaint(new Color(196,134,1));
         graphics2D.draw(new Ellipse2D.Double(-250 + (spriteCounter * speed), 525, 200, 150));
+        pizzaX = -250 + (spriteCounter * speed) + 100;
+        pizzaY = 525 + 75;
 
 
         /*
@@ -150,6 +157,14 @@ public class Player extends JPanel{
          */
     }
 
+    public int getPizzaX() {
+        return pizzaX;
+    }
+
+    public int getPizzaY() {
+        return pizzaY;
+    }
+
     public double getVelX() {
         return velX;
     }
@@ -178,4 +193,6 @@ public class Player extends JPanel{
     {
         return playerScoreBoard;
     }
+
+
 }
