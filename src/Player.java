@@ -87,14 +87,39 @@ public class Player extends JPanel{
         playerScoreBoard.paintComponent(graphics);
 
         spriteCounter++;
-        int speed = 2;
+        int speed = 3;
+
+        if (spriteCounter * speed - 250 > 1306)
+        {
+            spriteCounter = 0;
+        }
 
         Graphics2D graphics2D = (Graphics2D) graphics;
+
+        // Conveyor Belt
+
+        graphics2D.setPaint(new Color(198,198,198));
+        graphics2D.fillRect(-100,500,1400,300);
+        graphics2D.setPaint(new Color(156,156,156));
+        int conveyorLineX = -1450 + (spriteCounter * speed);
+        int conveyorLineGap = 130;
+        graphics2D.setStroke(new BasicStroke(3));
+            // bottom line
+        graphics2D.drawLine(0, 700, 1250, 700);
+            // Conveyor Belt Lines
+        for (int i = 0; i < 25; i++)
+        {
+            graphics2D.drawLine(conveyorLineX + (conveyorLineGap * i), 500, conveyorLineX - 25 + (conveyorLineGap * i), 700);
+        }
+
+
+
+        // Pizza
         graphics2D.setPaint(new Color(244,203,146));
-        graphics2D.fill(new Ellipse2D.Double(-250 + (spriteCounter * speed), 550, 200, 150));
+        graphics2D.fill(new Ellipse2D.Double(-250 + (spriteCounter * speed), 525, 200, 150));
         graphics2D.setStroke(new BasicStroke(10));
         graphics2D.setPaint(new Color(196,134,1));
-        graphics2D.draw(new Ellipse2D.Double(-250 + (spriteCounter * speed), 550, 200, 150));
+        graphics2D.draw(new Ellipse2D.Double(-250 + (spriteCounter * speed), 525, 200, 150));
 
 
         /*
