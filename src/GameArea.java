@@ -4,14 +4,6 @@ import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
 public class GameArea extends JPanel{
-
-    private double xCoord;
-    private double yCoord;
-
-    private double velX;
-    private double velY;
-    private double jumpVel;
-    private double gravity;
     private int speed;
     private ImageIcon cheese;
     private ImageIcon pepperoniShelf;
@@ -22,7 +14,6 @@ public class GameArea extends JPanel{
     private ImageIcon jalapenos;
     private ImageIcon gameAreaBackground;
     private int spriteCounter;
-    private int spriteNum;
     private PlayerScoreBoard playerScoreBoard;
     private Window window;
     private int pizzaX;
@@ -38,13 +29,7 @@ public class GameArea extends JPanel{
     public GameArea(Window window)
     {
         this.window = window;
-        xCoord = 1000 / 2.0;
-        yCoord = 750 / 2.0 - 50;
         playerScoreBoard = new PlayerScoreBoard(window);
-
-        gravity = 4;
-        jumpVel = 10;
-        speed = 4;
 
         cheese = new ImageIcon("img/cheese.png");
         pepperoniShelf = new ImageIcon("img/pepperoni_shelf.png");
@@ -55,8 +40,8 @@ public class GameArea extends JPanel{
         jalapenos = new ImageIcon("img/jalapenos.png");
         gameAreaBackground = new ImageIcon("img/game_area_background.png");
 
+        speed = 1;
         spriteCounter = 0;
-        spriteNum = 0;
 
         pizzaX = -250;
         pizzaY = 525;
@@ -66,35 +51,14 @@ public class GameArea extends JPanel{
         holdingTomatoSauce = false;
     }
 
-    public void tick()
-    {
-        xCoord += velX;
-
-        if (velY < gravity)
-        {
-            velY += 0.45;
-        }
-
-        if (yCoord + velY < window.getHeight() / 2.0)
-        {
-            yCoord += velY;
-        }
-        else
-        {
-            velY = 0;
-        }
-    }
-
     public void paintComponent(Graphics graphics)
     {
-        //display = imgArr.get(spriteNum);
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
         gameAreaBackground.paintIcon(this, graphics2D, 0, 0);
-        //display.paintIcon(this, graphics, (int)xCoord, (int)yCoord);
 
         spriteCounter++;
-        int speed = 1;
+        speed = 1;
         if (playerScoreBoard.getLivesLeft() <= 0)
         {
             speed = 0;
@@ -391,26 +355,6 @@ public class GameArea extends JPanel{
 
     public void setHoldingJalapenos(boolean holdingJalapenos) {
         this.holdingJalapenos = holdingJalapenos;
-    }
-
-    public double getVelX() {
-        return velX;
-    }
-
-    public void setVelX(double velX) {
-        this.velX = velX;
-    }
-
-    public double getVelY() {
-        return velY;
-    }
-
-    public void setVelY(double velY) {
-        this.velY = velY;
-    }
-
-    public double getJumpVel() {
-        return jumpVel;
     }
 
     public int getSpeed() {

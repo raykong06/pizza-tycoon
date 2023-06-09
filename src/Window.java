@@ -10,10 +10,8 @@ public class Window extends Canvas implements Runnable {
     private JFrame frame;
     private GameArea gameArea;
     private MouseInput mouseInput;
-    private LevelHandler levelHandler;
     private MenuHandler menuHandler;
     private int gameState;
-    //private JLabel imageLabel;
 
     // Runs everytime a new window is created
     public Window(String title)
@@ -21,7 +19,6 @@ public class Window extends Canvas implements Runnable {
         running = false;
         gameArea = new GameArea(this);
         mouseInput = new MouseInput(this);
-        levelHandler = new LevelHandler();
         menuHandler = new MenuHandler(this);
         gameState = 1;
 
@@ -47,19 +44,6 @@ public class Window extends Canvas implements Runnable {
         thread.start();
     }
 
-    // Stop the game
-    public void stop()
-    {
-        running = false;
-
-        // stop the thread
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     // begins when start calls the run method
     // basic run method, dont need to know how it works
     @Override
@@ -83,7 +67,6 @@ public class Window extends Canvas implements Runnable {
             lastTime = now;
             while (delta >= 1)
             {
-                tick();
                 // updates at approx 60 ticks per second
                 render();
                 // frames is # of times rendered per second
@@ -104,11 +87,6 @@ public class Window extends Canvas implements Runnable {
                 updates = 0;
             }
         }
-    }
-
-    // updates the window
-    public void tick(){
-        gameArea.tick();
     }
 
     // paints onto the window

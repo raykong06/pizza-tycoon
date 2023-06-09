@@ -7,7 +7,6 @@ public class PlayerScoreBoard extends JPanel {
     private int pizzasMade;
     private int livesLeft;
     private Window window;
-    private static long startTime = System.currentTimeMillis();
     private final Pizza cheesePizza = new Pizza(true,true,false,false,false,false);
     private final Pizza pepperoniPizza = new Pizza(true,true,true,false,false,false);
     private final Pizza allInPizza = new Pizza(true,true,true,true,true,true);
@@ -170,30 +169,6 @@ public class PlayerScoreBoard extends JPanel {
             graphics2D.drawString("Main", window.getWidth() / 2 - (graphics2D.getFontMetrics().stringWidth("Main") / 2), 450);
             graphics2D.drawString("Menu", window.getWidth() / 2 - (graphics2D.getFontMetrics().stringWidth("Main") / 2), 500);
         }
-
-        /*
-        graphics2D.setPaint(Color.black);
-        graphics2D.setFont(new Font("Courier New", Font.BOLD, 50));
-        int actualWidth = graphics2D.getFontMetrics().stringWidth(String.valueOf(playerPoints));
-        graphics2D.drawString(String.valueOf(playerPoints), window.getWidth() - actualWidth - 50, 100);
-
-        long elapsedTime = getTimeElapsed();
-        if (timer - elapsedTime <= 0)
-        {
-            graphics2D.drawString("0:00", 50, 100);
-            graphics2D.setPaint(Color.red);
-            graphics2D.setFont(new Font("Oswald", Font.BOLD, 75));
-            graphics2D.drawString("GAME OVER", window.getWidth() / 2 - (graphics2D.getFontMetrics().stringWidth("GAME OVER") / 2), 275);
-        }
-        else if (timer - elapsedTime < 10)
-        {
-            graphics2D.drawString("0:0" + (int)(timer - elapsedTime), 50, 100);
-        }
-        else
-        {
-            graphics2D.drawString("0:" + (int)(timer - elapsedTime), 50, 100);
-        }
-        */
     }
 
     public void updateScoreBoard(Pizza inputPizza)

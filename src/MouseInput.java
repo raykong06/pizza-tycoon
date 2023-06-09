@@ -3,9 +3,6 @@ import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
 
 public class MouseInput implements MouseListener {
-    private double startTime = 0;
-    private boolean rightKeyPressed = false;
-    private boolean upKeyPressed = false;
 
     private Window window;
     private GameArea gameArea;
