@@ -13,18 +13,13 @@ public class GameArea extends JPanel{
     private double jumpVel;
     private double gravity;
     private int speed;
-    private ImageIcon motion1;
-    private ImageIcon motion2;
-    private ImageIcon motion3;
-    private ImageIcon motion4;
-    private ImageIcon motion5;
-    private ImageIcon motion6;
-    private ImageIcon background;
-    private ArrayList<ImageIcon> imgArr;
-    private ImageIcon display;
     private ImageIcon cheese;
     private ImageIcon pepperoniShelf;
     private ImageIcon pepperoniPlace;
+    private ImageIcon pineappleShelf;
+    private ImageIcon pineapplePlace;
+    private ImageIcon mushrooms;
+    private ImageIcon jalapenos;
     private ImageIcon gameAreaBackground;
     private int spriteCounter;
     private int spriteNum;
@@ -38,7 +33,7 @@ public class GameArea extends JPanel{
     private boolean holdingPepperoni;
     private boolean holdingPineapple;
     private boolean holdingMushrooms;
-    private boolean holdingGreenPeppers;
+    private boolean holdingJalapenos;
 
     public GameArea(Window window)
     {
@@ -51,26 +46,13 @@ public class GameArea extends JPanel{
         jumpVel = 10;
         speed = 4;
 
-        motion1 = new ImageIcon("img/player_motion1.png");
-        motion2 = new ImageIcon("img/player_motion2.png");
-        motion3 = new ImageIcon("img/player_motion3.png");
-        motion4 = new ImageIcon("img/player_motion4.png");
-        motion5 = new ImageIcon("img/player_motion5.png");
-        motion6 = new ImageIcon("img/player_motion6.png");
-        background = new ImageIcon("img/playerbackground.jpg");
-        display = motion1;
-
-        imgArr = new ArrayList<ImageIcon>();
-        imgArr.add(motion1);
-        imgArr.add(motion2);
-        imgArr.add(motion3);
-        imgArr.add(motion4);
-        imgArr.add(motion5);
-        imgArr.add(motion6);
-
         cheese = new ImageIcon("img/cheese.png");
         pepperoniShelf = new ImageIcon("img/pepperoni_shelf.png");
         pepperoniPlace = new ImageIcon("img/pepperoni_place.png");
+        pineappleShelf = new ImageIcon("img/pineapple_shelf.png");
+        pineapplePlace = new ImageIcon("img/pineapple_place.png");
+        mushrooms = new ImageIcon("img/mushrooms.png");
+        jalapenos = new ImageIcon("img/jalapenos.png");
         gameAreaBackground = new ImageIcon("img/game_area_background.png");
 
         spriteCounter = 0;
@@ -112,7 +94,7 @@ public class GameArea extends JPanel{
         //display.paintIcon(this, graphics, (int)xCoord, (int)yCoord);
 
         spriteCounter++;
-        int speed = 8;
+        int speed = 3;
         if (playerScoreBoard.getLivesLeft() <= 0)
         {
             speed = 0;
@@ -126,6 +108,9 @@ public class GameArea extends JPanel{
             currentPizza.setTomatoSauce(false);
             currentPizza.setCheese(false);
             currentPizza.setPepperoni(false);
+            currentPizza.setPineapple(false);
+            currentPizza.setMushrooms(false);
+            currentPizza.setJalapenos(false);
         }
 
         // Conveyor Belt
@@ -161,6 +146,25 @@ public class GameArea extends JPanel{
         if (currentPizza.isPepperoni())
         {
             pepperoniPlace.paintIcon(this,graphics2D,-215 + (spriteCounter * speed),530);
+        }
+        if (currentPizza.isPineapple())
+        {
+            pineapplePlace.paintIcon(this,graphics2D,-230 + (spriteCounter * speed),535);
+            pineapplePlace.paintIcon(this,graphics2D,-150 + (spriteCounter * speed),555);
+            pineapplePlace.paintIcon(this,graphics2D,-205 + (spriteCounter * speed),595);
+        }
+        if (currentPizza.isMushrooms())
+        {
+            mushrooms.paintIcon(this,graphics2D,-230 + (spriteCounter * speed),550);
+            mushrooms.paintIcon(this,graphics2D,-177 + (spriteCounter * speed),540);
+            mushrooms.paintIcon(this,graphics2D,-140 + (spriteCounter * speed),570);
+            mushrooms.paintIcon(this,graphics2D,-200 + (spriteCounter * speed),570);
+        }
+        if (currentPizza.isJalapenos())
+        {
+            jalapenos.paintIcon(this,graphics2D,-220 + (spriteCounter * speed),540);
+            jalapenos.paintIcon(this,graphics2D,-210 + (spriteCounter * speed) + 75,540 + 30);
+            jalapenos.paintIcon(this,graphics2D,-210 + (spriteCounter * speed) + 20,540 + 65);
         }
 
         graphics2D.setStroke(new BasicStroke(10));
@@ -214,6 +218,37 @@ public class GameArea extends JPanel{
         pepperoniShelf.paintIcon(this,graphics2D, 570,330);
         pepperoniShelf.paintIcon(this,graphics2D,570 + 15,330);
 
+        // Pineapple Shelf
+        graphics2D.setPaint(new Color(51,51,51));
+        graphics2D.fillRect(780,360,150,75);
+        graphics2D.setPaint(new Color(0,0,0));
+        graphics2D.setStroke(new BasicStroke(3));
+        graphics2D.drawRect(780,360,150,75);
+        pineappleShelf.paintIcon(this,graphics2D,770,295);
+
+        // Mushroom Shelf
+        graphics2D.setPaint(new Color(51,51,51));
+        graphics2D.fillRect(950,360,100,75);
+        graphics2D.setPaint(new Color(0,0,0));
+        graphics2D.setStroke(new BasicStroke(3));
+        graphics2D.drawRect(950,360,100,75);
+        mushrooms.paintIcon(this,graphics2D,950,360);
+        mushrooms.paintIcon(this,graphics2D,950 + 10,350);
+        mushrooms.paintIcon(this,graphics2D,950 + 30,360);
+        mushrooms.paintIcon(this,graphics2D,950 + 20,345);
+        mushrooms.paintIcon(this,graphics2D,950 + 40,360);
+        mushrooms.paintIcon(this,graphics2D,950 + 55,355);
+        mushrooms.paintIcon(this,graphics2D,950 + 50,350);
+
+        // Jalapenos Shelf
+        graphics2D.setPaint(new Color(51,51,51));
+        graphics2D.fillRect(1070,360,100,75);
+        graphics2D.setPaint(new Color(0,0,0));
+        graphics2D.setStroke(new BasicStroke(3));
+        graphics2D.drawRect(1070,360,100,75);
+        jalapenos.paintIcon(this,graphics2D,1070,370);
+        jalapenos.paintIcon(this,graphics2D,1100,360);
+
         // Dragging Tomato Sauce
         if (holdingTomatoSauce)
         {
@@ -252,32 +287,40 @@ public class GameArea extends JPanel{
             pepperoniPlace.paintIcon(this,graphics2D,mousePressX,mousePressY);
         }
 
-        /*
-        spriteCounter++;
-        if (spriteNum == 1 && spriteCounter > 12)
+        // Dragging Pineapple
+        if (holdingPineapple)
         {
-            spriteNum++;
-            spriteCounter = 0;
-        }
-        else if (spriteNum == 0 && spriteCounter > 12)
-        {
-            spriteNum++;
-            spriteCounter = 0;
-        }
-        else if (spriteNum > 1 && spriteCounter > 12)
-        {
-            if (spriteNum < 5)
-            {
-                spriteNum++;
-            }
-            else
-            {
-                spriteNum = 0;
-            }
-            spriteCounter = 0;
+            Point p = MouseInfo.getPointerInfo().getLocation();
+
+            int mousePressX = p.x - 38 - window.getLocationOnScreen().x;
+            int mousePressY = p.y - 35 - window.getLocationOnScreen().y;
+
+            pineapplePlace.paintIcon(this,graphics2D,mousePressX,mousePressY);
         }
 
-         */
+        // Dragging Mushrooms
+        if (holdingMushrooms)
+        {
+            Point p = MouseInfo.getPointerInfo().getLocation();
+
+            int mousePressX = p.x - 47 - window.getLocationOnScreen().x;
+            int mousePressY = p.y - 38 - window.getLocationOnScreen().y;
+
+            mushrooms.paintIcon(this,graphics2D,mousePressX,mousePressY);
+            mushrooms.paintIcon(this,graphics2D,mousePressX + 47,mousePressY);
+        }
+
+        // Dragging Jalapenos
+        if (holdingJalapenos)
+        {
+            Point p = MouseInfo.getPointerInfo().getLocation();
+
+            int mousePressX = p.x - 38 - window.getLocationOnScreen().x;
+            int mousePressY = p.y - 33 - window.getLocationOnScreen().y;
+
+            jalapenos.paintIcon(this,graphics2D,mousePressX,mousePressY);
+        }
+
         playerScoreBoard.paintComponent(graphics);
     }
 
@@ -342,12 +385,12 @@ public class GameArea extends JPanel{
         this.holdingMushrooms = holdingMushrooms;
     }
 
-    public boolean isHoldingGreenPeppers() {
-        return holdingGreenPeppers;
+    public boolean isHoldingJalapenos() {
+        return holdingJalapenos;
     }
 
-    public void setHoldingGreenPeppers(boolean holdingGreenPeppers) {
-        this.holdingGreenPeppers = holdingGreenPeppers;
+    public void setHoldingJalapenos(boolean holdingJalapenos) {
+        this.holdingJalapenos = holdingJalapenos;
     }
 
     public double getVelX() {

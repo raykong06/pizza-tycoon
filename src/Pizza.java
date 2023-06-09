@@ -6,7 +6,7 @@ public class Pizza {
     private boolean pepperoni;
     private boolean pineapple;
     private boolean mushrooms;
-    private boolean greenPepper;
+    private boolean jalapenos;
     private ArrayList<Boolean> ingredientList;
     private String name;
 
@@ -15,14 +15,14 @@ public class Pizza {
         this(false,false,false,false,false,false);
     }
 
-    public Pizza (boolean tomatoSauce, boolean cheese, boolean pepperoni, boolean pineapple, boolean mushrooms, boolean greenPepper)
+    public Pizza (boolean tomatoSauce, boolean cheese, boolean pepperoni, boolean pineapple, boolean mushrooms, boolean jalapenos)
     {
         this.tomatoSauce = tomatoSauce;
         this.cheese = cheese;
         this.pepperoni = pepperoni;
         this.pineapple = pineapple;
         this.mushrooms = mushrooms;
-        this.greenPepper = greenPepper;
+        this.jalapenos = jalapenos;
 
         ingredientList = new ArrayList<Boolean>();
         ingredientList.add(tomatoSauce);
@@ -30,7 +30,7 @@ public class Pizza {
         ingredientList.add(pepperoni);
         ingredientList.add(pineapple);
         ingredientList.add(mushrooms);
-        ingredientList.add(greenPepper);
+        ingredientList.add(jalapenos);
 
         name = "";
     }
@@ -41,7 +41,7 @@ public class Pizza {
         boolean isEqual = true;
 
         if (this.tomatoSauce != pizzaRecipe.tomatoSauce || this.cheese != pizzaRecipe.cheese || this.pepperoni != pizzaRecipe.pepperoni ||
-                this.pineapple != pizzaRecipe.pineapple || this.mushrooms != pizzaRecipe.mushrooms || this.greenPepper != pizzaRecipe.greenPepper)
+                this.pineapple != pizzaRecipe.pineapple || this.mushrooms != pizzaRecipe.mushrooms || this.jalapenos != pizzaRecipe.jalapenos)
         {
             isEqual = false;
         }
@@ -109,11 +109,11 @@ public class Pizza {
         this.mushrooms = mushrooms;
     }
 
-    public boolean isGreenPepper() {
-        return greenPepper;
+    public boolean isJalapenos() {
+        return jalapenos;
     }
 
-    public void setGreenPepper(boolean greenPepper) {
-        this.greenPepper = greenPepper;
+    public void setJalapenos(boolean jalapenos) {
+        this.jalapenos = jalapenos;
     }
 }

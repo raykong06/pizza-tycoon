@@ -64,6 +64,18 @@ public class MouseInput implements MouseListener {
             {
                 gameArea.setHoldingPepperoni(true);
             }
+            else if (pineappleContains(mousePressX,mousePressY))
+            {
+                gameArea.setHoldingPineapple(true);
+            }
+            else if (mushroomsContains(mousePressX,mousePressY))
+            {
+                gameArea.setHoldingMushrooms(true);
+            }
+            else if (jalapenosContains(mousePressX,mousePressY))
+            {
+                gameArea.setHoldingJalapenos(true);
+            }
 
             if (gameArea.getPlayerScoreBoard().getLivesLeft() <= 0)
             {
@@ -94,10 +106,25 @@ public class MouseInput implements MouseListener {
             {
                 gameArea.getCurrentPizza().setPepperoni(true);
             }
+            if (gameArea.isHoldingPineapple())
+            {
+                gameArea.getCurrentPizza().setPineapple(true);
+            }
+            if (gameArea.isHoldingMushrooms())
+            {
+                gameArea.getCurrentPizza().setMushrooms(true);
+            }
+            if (gameArea.isHoldingJalapenos())
+            {
+                gameArea.getCurrentPizza().setJalapenos(true);
+            }
         }
         gameArea.setHoldingTomatoSauce(false);
         gameArea.setHoldingCheese(false);
         gameArea.setHoldingPepperoni(false);
+        gameArea.setHoldingPineapple(false);
+        gameArea.setHoldingMushrooms(false);
+        gameArea.setHoldingJalapenos(false);
     }
 
     @Override
@@ -129,6 +156,21 @@ public class MouseInput implements MouseListener {
     private boolean pepperoniContains(int x, int y)
     {
         return (x > 570 && x < 750 && y > 330 && y < 430);
+    }
+
+    private boolean pineappleContains(int x, int y)
+    {
+        return (x > 780 && x < 930 && y > 300 && y < 430);
+    }
+
+    private boolean mushroomsContains(int x, int y)
+    {
+        return (x > 950 && x < 1050 && y > 360 && y < 430);
+    }
+
+    private boolean jalapenosContains(int x, int y)
+    {
+        return (x > 1070 && x < 1170 && y > 365 && y < 435);
     }
 
     private boolean gameOverButtonContains(int x, int y)

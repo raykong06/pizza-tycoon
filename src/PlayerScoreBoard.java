@@ -99,11 +99,11 @@ public class PlayerScoreBoard extends JPanel {
             graphics2D.drawString("Mushrooms", displayTopCornerX + 420 - actualWidth, displayTopCornerY + 150 + (j * 15));
             j++;
         }
-        if (currentPizza.isGreenPepper())
+        if (currentPizza.isJalapenos())
         {
             graphics2D.setFont(new Font("Courier New", Font.BOLD,10));
-            int actualWidth = graphics2D.getFontMetrics().stringWidth("Green Peppers");
-            graphics2D.drawString("Green Peppers", displayTopCornerX + 420 - actualWidth, displayTopCornerY + 150 + (j * 15));
+            int actualWidth = graphics2D.getFontMetrics().stringWidth("Jalapenos");
+            graphics2D.drawString("Jalapenos", displayTopCornerX + 420 - actualWidth, displayTopCornerY + 150 + (j * 15));
         }
 
         // Player Info (Points + Pizzas Made)
