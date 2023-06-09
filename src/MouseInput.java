@@ -42,6 +42,10 @@ public class MouseInput implements MouseListener {
         {
             gameArea.setHoldingTomatoSauce(true);
         }
+        else if (cheeseContains(mousePressX,mousePressY))
+        {
+            gameArea.setHoldingCheese(true);
+        }
     }
 
     @Override
@@ -51,11 +55,19 @@ public class MouseInput implements MouseListener {
         mouseReleaseX = e.getX();
         mouseReleaseY = e.getY();
 
-        if (releaseContains(gameArea.getPizzaX(), gameArea.getPizzaY()) && gameArea.isHoldingTomatoSauce())
+        if (releaseContains(gameArea.getPizzaX(), gameArea.getPizzaY()))
         {
-            gameArea.getCurrentPizza().setTomatoSauce(true);
+            if (gameArea.isHoldingTomatoSauce())
+            {
+                gameArea.getCurrentPizza().setTomatoSauce(true);
+            }
+            if (gameArea.isHoldingCheese())
+            {
+                gameArea.getCurrentPizza().setCheese(true);
+            }
         }
         gameArea.setHoldingTomatoSauce(false);
+        gameArea.setHoldingCheese(false);
     }
 
     @Override
@@ -79,4 +91,8 @@ public class MouseInput implements MouseListener {
         return (x > 135 && x < 185 && y > 280 && y < 380);
     }
 
+    private boolean cheeseContains(int x, int y)
+    {
+        return (x > 310 && x < 500 && y > 360 && y < 430);
+    }
 }

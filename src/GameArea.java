@@ -22,6 +22,7 @@ public class GameArea extends JPanel{
     private ImageIcon background;
     private ArrayList<ImageIcon> imgArr;
     private ImageIcon display;
+    private ImageIcon cheese;
     private int spriteCounter;
     private int spriteNum;
     private PlayerScoreBoard playerScoreBoard;
@@ -63,6 +64,8 @@ public class GameArea extends JPanel{
         imgArr.add(motion4);
         imgArr.add(motion5);
         imgArr.add(motion6);
+
+        cheese = new ImageIcon("img/cheese.png");
 
         spriteCounter = 0;
         spriteNum = 0;
@@ -131,11 +134,20 @@ public class GameArea extends JPanel{
 
         // Pizza
         graphics2D.setPaint(new Color(244,203,146));
+        // Change Pizza Depending on Ingredients
         if (currentPizza.isTomatoSauce())
         {
             graphics2D.setPaint(new Color(255,77,0));
         }
         graphics2D.fill(new Ellipse2D.Double(-250 + (spriteCounter * speed), 525, 200, 150));
+        if (currentPizza.isCheese())
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                cheese.paintIcon(this,graphics2D,-250 + (spriteCounter * speed),525 + (i * 30));
+            }
+        }
+
         graphics2D.setStroke(new BasicStroke(10));
         graphics2D.setPaint(new Color(196,134,1));
         graphics2D.draw(new Ellipse2D.Double(-250 + (spriteCounter * speed), 525, 200, 150));
@@ -167,13 +179,21 @@ public class GameArea extends JPanel{
         graphics2D.setStroke(new BasicStroke(3,BasicStroke.CAP_ROUND,BasicStroke.JOIN_BEVEL));
         graphics2D.drawPolygon(new int[] {145,175,160},new int[] {380,380,420},3);
 
+        // Cheese Shelf
+        graphics2D.setPaint(new Color(51,51,51));
+        graphics2D.fillRect(300,360,200,75);
+        graphics2D.setPaint(new Color(0,0,0));
+        graphics2D.setStroke(new BasicStroke(3));
+        graphics2D.drawRect(300,360,200,75);
+        cheese.paintIcon(this,graphics2D,300,350);
+
         // Dragging Tomato Sauce
         if (holdingTomatoSauce)
         {
             Point p = MouseInfo.getPointerInfo().getLocation();
 
-            int mousePressX = p.x - 25;
-            int mousePressY = p.y - 125;
+            int mousePressX = p.x - 25 - window.getLocationOnScreen().x;
+            int mousePressY = p.y - 125 - window.getLocationOnScreen().y;
             graphics2D.setPaint(new Color(255,77,0));
             graphics2D.fillRoundRect(mousePressX,mousePressY,50,100,5,5);
             graphics2D.fillPolygon(new int[] {mousePressX + 10,mousePressX + 40,mousePressX + 25},new int[] {mousePressY + 100,mousePressY + 100,mousePressY + 140},3);
@@ -181,6 +201,17 @@ public class GameArea extends JPanel{
             graphics2D.drawRoundRect(mousePressX,mousePressY,50,100,5,5);
             graphics2D.setStroke(new BasicStroke(3,BasicStroke.CAP_ROUND,BasicStroke.JOIN_BEVEL));
             graphics2D.drawPolygon(new int[] {mousePressX + 10,mousePressX + 40,mousePressX + 25},new int[] {mousePressY + 100,mousePressY + 100,mousePressY + 140},3);
+        }
+
+        // Dragging Cheese
+        if (holdingCheese)
+        {
+            Point p = MouseInfo.getPointerInfo().getLocation();
+
+            int mousePressX = p.x - 100 - window.getLocationOnScreen().x;
+            int mousePressY = p.y - 40 - window.getLocationOnScreen().y;
+
+            cheese.paintIcon(this,graphics2D,mousePressX,mousePressY);
         }
 
         /*
