@@ -94,7 +94,7 @@ public class GameArea extends JPanel{
         //display.paintIcon(this, graphics, (int)xCoord, (int)yCoord);
 
         spriteCounter++;
-        int speed = 3;
+        int speed = 1;
         if (playerScoreBoard.getLivesLeft() <= 0)
         {
             speed = 0;
@@ -162,9 +162,9 @@ public class GameArea extends JPanel{
         }
         if (currentPizza.isJalapenos())
         {
-            jalapenos.paintIcon(this,graphics2D,-220 + (spriteCounter * speed),540);
-            jalapenos.paintIcon(this,graphics2D,-210 + (spriteCounter * speed) + 75,540 + 30);
-            jalapenos.paintIcon(this,graphics2D,-210 + (spriteCounter * speed) + 20,540 + 65);
+            jalapenos.paintIcon(this,graphics2D,-220 + (spriteCounter * speed),545);
+            jalapenos.paintIcon(this,graphics2D,-215 + (spriteCounter * speed) + 75,540 + 30);
+            jalapenos.paintIcon(this,graphics2D,-210 + (spriteCounter * speed) + 20,540 + 55);
         }
 
         graphics2D.setStroke(new BasicStroke(10));

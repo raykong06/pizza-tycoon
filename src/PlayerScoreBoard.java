@@ -16,6 +16,9 @@ public class PlayerScoreBoard extends JPanel {
     private Pizza currentPizza;
     private ImageIcon cheesePizzaImageIcon;
     private ImageIcon pepperoniPizzaImageIcon;
+    private ImageIcon allInPizzaImageIcon;
+    private ImageIcon dryPizzaImageIcon;
+    private ImageIcon veganPizzaImageIcon;
 
     public PlayerScoreBoard(Window window)
     {
@@ -32,6 +35,9 @@ public class PlayerScoreBoard extends JPanel {
 
         cheesePizzaImageIcon = new ImageIcon("img/cheese_pizza.png");
         pepperoniPizzaImageIcon = new ImageIcon("img/pepperoni_pizza.png");
+        allInPizzaImageIcon = new ImageIcon("img/all_in_pizza.png");
+        dryPizzaImageIcon = new ImageIcon("img/dry_pizza.png");
+        veganPizzaImageIcon = new ImageIcon("img/vegan_pizza.png");
 
         generateRandomPizzaRecipe();
     }
@@ -61,6 +67,18 @@ public class PlayerScoreBoard extends JPanel {
         if (currentPizza.equals(pepperoniPizza))
         {
             pepperoniPizzaImageIcon.paintIcon(this,graphics2D,displayTopCornerX + 30,displayTopCornerY + 60);
+        }
+        if (currentPizza.equals(allInPizza))
+        {
+            allInPizzaImageIcon.paintIcon(this,graphics2D,displayTopCornerX + 30,displayTopCornerY + 60);
+        }
+        if (currentPizza.equals(dryPizza))
+        {
+            dryPizzaImageIcon.paintIcon(this,graphics2D,displayTopCornerX + 30,displayTopCornerY + 60);
+        }
+        if (currentPizza.equals(veganPizza))
+        {
+            veganPizzaImageIcon.paintIcon(this,graphics2D,displayTopCornerX + 30,displayTopCornerY + 60);
         }
 
         int j = 0;
