@@ -28,6 +28,7 @@ public class Player extends JPanel{
     private Window window;
     private int pizzaX;
     private int pizzaY;
+    private Pizza currentPizza;
 
     public Player(Window window)
     {
@@ -62,6 +63,8 @@ public class Player extends JPanel{
 
         pizzaX = -250;
         pizzaY = 525;
+
+        currentPizza = new Pizza();
     }
 
     public void tick()
@@ -121,12 +124,21 @@ public class Player extends JPanel{
 
         // Pizza
         graphics2D.setPaint(new Color(244,203,146));
+        if (currentPizza.isTomatoSauce())
+        {
+            graphics2D.setPaint(new Color(255,77,0));
+        }
         graphics2D.fill(new Ellipse2D.Double(-250 + (spriteCounter * speed), 525, 200, 150));
         graphics2D.setStroke(new BasicStroke(10));
         graphics2D.setPaint(new Color(196,134,1));
         graphics2D.draw(new Ellipse2D.Double(-250 + (spriteCounter * speed), 525, 200, 150));
         pizzaX = -250 + (spriteCounter * speed) + 100;
         pizzaY = 525 + 75;
+
+        if (pizzaX > 1400)
+        {
+            currentPizza.setTomatoSauce(false);
+        }
 
 
         /*
@@ -163,6 +175,10 @@ public class Player extends JPanel{
 
     public int getPizzaY() {
         return pizzaY;
+    }
+
+    public Pizza getCurrentPizza() {
+        return currentPizza;
     }
 
     public double getVelX() {

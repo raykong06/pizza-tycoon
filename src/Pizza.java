@@ -9,6 +9,11 @@ public class Pizza {
     private boolean greenPepper;
     private ArrayList<Boolean> ingredientList;
 
+    public Pizza()
+    {
+        this(false,false,false,false,false,false);
+    }
+
     public Pizza (boolean tomatoSauce, boolean cheese, boolean pepperoni, boolean pineapple, boolean mushrooms, boolean greenPepper)
     {
         this.tomatoSauce = tomatoSauce;
@@ -45,6 +50,54 @@ public class Pizza {
         }
 
         return isEqual;
+    }
+
+    public boolean isTomatoSauce() {
+        return tomatoSauce;
+    }
+
+    public void setTomatoSauce(boolean tomatoSauce) {
+        this.tomatoSauce = tomatoSauce;
+    }
+
+    public boolean isCheese() {
+        return cheese;
+    }
+
+    public void setCheese(boolean cheese) {
+        this.cheese = cheese;
+    }
+
+    public boolean isPepperoni() {
+        return pepperoni;
+    }
+
+    public void setPepperoni(boolean pepperoni) {
+        this.pepperoni = pepperoni;
+    }
+
+    public boolean isPineapple() {
+        return pineapple;
+    }
+
+    public void setPineapple(boolean pineapple) {
+        this.pineapple = pineapple;
+    }
+
+    public boolean isMushrooms() {
+        return mushrooms;
+    }
+
+    public void setMushrooms(boolean mushrooms) {
+        this.mushrooms = mushrooms;
+    }
+
+    public boolean isGreenPepper() {
+        return greenPepper;
+    }
+
+    public void setGreenPepper(boolean greenPepper) {
+        this.greenPepper = greenPepper;
     }
 
 }

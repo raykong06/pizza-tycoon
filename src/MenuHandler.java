@@ -14,7 +14,7 @@ public class MenuHandler extends JFrame {
     {
         setContentPane(menuHandler);
         setTitle(title);
-        setSize(1000, 750);
+        setSize(1250, 750);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);

@@ -3,8 +3,6 @@ import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
 
 public class MouseInput implements MouseListener {
-    //private TrickLibrary trickLibrary = new TrickLibrary();
-    //private pen penguinMechanics = new Pizza();
     private double startTime = 0;
     private boolean rightKeyPressed = false;
     private boolean upKeyPressed = false;
@@ -127,7 +125,7 @@ public class MouseInput implements MouseListener {
 
         if (contains(player.getPizzaX(), player.getPizzaY()))
         {
-            System.out.println("in zone!");
+            player.getCurrentPizza().setTomatoSauce(true);
         }
     }
 
