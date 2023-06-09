@@ -22,7 +22,7 @@ public class PlayerScoreBoard extends JPanel {
     {
         playerPoints = 0;
         pizzasMade = 0;
-        livesLeft = 3;
+        livesLeft = 0;
         timer = 60;
         this.window = window;
 
@@ -134,12 +134,32 @@ public class PlayerScoreBoard extends JPanel {
             graphics2D.fill(heartPath);
         }
 
+        // Game Over Screen
+        if (livesLeft <= 0)
+        {
+            graphics2D.setPaint(new Color(45,41,45));
+            graphics2D.fillRoundRect(275,125,700,500,50,50);
+
+            graphics2D.setPaint(new Color(196,0,54));
+            graphics2D.setFont(new Font("Courier", Font.BOLD, 75));
+            graphics2D.drawString("GAME OVER", window.getWidth() / 2 - (graphics2D.getFontMetrics().stringWidth("GAME OVER") / 2), 275);
+
+            // Game Over Button
+            graphics2D.setPaint(new Color(190,190,190));
+            graphics2D.fillRoundRect(475,400,300,125,50,50);
+            graphics2D.setPaint(Color.BLACK);
+            graphics2D.drawRoundRect(475,400,300,125,50,50);
+            graphics2D.setPaint(new Color(45,41,45));
+            graphics2D.setFont(new Font("Courier", Font.BOLD, 32));
+            graphics2D.drawString("Main", window.getWidth() / 2 - (graphics2D.getFontMetrics().stringWidth("Main") / 2), 450);
+            graphics2D.drawString("Menu", window.getWidth() / 2 - (graphics2D.getFontMetrics().stringWidth("Main") / 2), 500);
+        }
+
         /*
         graphics2D.setPaint(Color.black);
         graphics2D.setFont(new Font("Courier New", Font.BOLD, 50));
         int actualWidth = graphics2D.getFontMetrics().stringWidth(String.valueOf(playerPoints));
         graphics2D.drawString(String.valueOf(playerPoints), window.getWidth() - actualWidth - 50, 100);
-         */
 
         long elapsedTime = getTimeElapsed();
         if (timer - elapsedTime <= 0)
@@ -157,16 +177,7 @@ public class PlayerScoreBoard extends JPanel {
         {
             graphics2D.drawString("0:" + (int)(timer - elapsedTime), 50, 100);
         }
-    }
-
-    public long getTimeElapsed()
-    {
-        return (System.currentTimeMillis() - startTime) / 1000;
-    }
-
-    public void setStartTime()
-    {
-        startTime = System.currentTimeMillis();
+        */
     }
 
     public void updateScoreBoard(Pizza inputPizza)
@@ -205,6 +216,10 @@ public class PlayerScoreBoard extends JPanel {
         {
             currentPizza = veganPizza;
         }
+    }
+
+    public int getLivesLeft() {
+        return livesLeft;
     }
 
     // Draw a heart

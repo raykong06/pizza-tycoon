@@ -110,10 +110,13 @@ public class GameArea extends JPanel{
         Graphics2D graphics2D = (Graphics2D) graphics;
         gameAreaBackground.paintIcon(this, graphics2D, 0, 0);
         //display.paintIcon(this, graphics, (int)xCoord, (int)yCoord);
-        playerScoreBoard.paintComponent(graphics);
 
         spriteCounter++;
         int speed = 8;
+        if (playerScoreBoard.getLivesLeft() >= 0)
+        {
+            speed = 0;
+        }
 
         if (spriteCounter * speed - 250 > 1306)
         {
@@ -275,6 +278,7 @@ public class GameArea extends JPanel{
         }
 
          */
+        playerScoreBoard.paintComponent(graphics);
     }
 
     public int getPizzaX() {

@@ -12,7 +12,6 @@ public class Window extends Canvas implements Runnable {
     private MouseInput mouseInput;
     private LevelHandler levelHandler;
     private MenuHandler menuHandler;
-    //private MenuHandler1 menuHandler1;
     private int gameState;
     //private JLabel imageLabel;
 
@@ -23,9 +22,8 @@ public class Window extends Canvas implements Runnable {
         gameArea = new GameArea(this);
         mouseInput = new MouseInput(this);
         levelHandler = new LevelHandler();
-        //menuHandler1 = new MenuHandler1(this);
-        menuHandler = new MenuHandler(title);
-        gameState = 2;
+        menuHandler = new MenuHandler(this);
+        gameState = 1;
 
         frame = new JFrame(title);
 
@@ -126,23 +124,14 @@ public class Window extends Canvas implements Runnable {
 
         if (gameState == 1)
         {
-            frame.setVisible(true);
-            graphics.setColor(Color.white);
+            graphics.setColor(new Color(202,129,87));
             graphics.fillRect(0,0, this.getWidth(), this.getHeight());
-            gameArea.paintComponent(graphics);
+            menuHandler.paintComponent(graphics);
         }
         else if (gameState == 2)
         {
-            frame.setVisible(false);
-            menuHandler.show();
-            if (menuHandler.getOption() == 1)
-            {
-                gameState = 1;
-                menuHandler.hide();
-            }
-        }
-        else if (gameState == 3)
-        {
+            graphics.setColor(Color.white);
+            graphics.fillRect(0,0, this.getWidth(), this.getHeight());
             gameArea.paintComponent(graphics);
         }
 
@@ -153,5 +142,13 @@ public class Window extends Canvas implements Runnable {
     public GameArea getGameArea()
     {
         return gameArea;
+    }
+
+    public int getGameState() {
+        return gameState;
+    }
+
+    public void setGameState(int gameState) {
+        this.gameState = gameState;
     }
 }

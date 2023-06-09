@@ -29,26 +29,48 @@ public class MouseInput implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("Click");
+
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        System.out.println("Press");
         mousePressX = e.getX();
         mousePressY = e.getY();
 
-        if (tomatoSauceContains(mousePressX, mousePressY))
+        if (window.getGameState() == 1)
         {
-            gameArea.setHoldingTomatoSauce(true);
+            if (mainMenuStartContains(mousePressX,mousePressY))
+            {
+                window.setGameState(2);
+            }
+            if (mainMenuQuitContains(mousePressX,mousePressY))
+            {
+                System.exit(0);
+            }
         }
-        else if (cheeseContains(mousePressX,mousePressY))
+
+        if (window.getGameState() == 2)
         {
-            gameArea.setHoldingCheese(true);
-        }
-        else if (pepperoniContains(mousePressX,mousePressY))
-        {
-            gameArea.setHoldingPepperoni(true);
+            if (tomatoSauceContains(mousePressX, mousePressY))
+            {
+                gameArea.setHoldingTomatoSauce(true);
+            }
+            else if (cheeseContains(mousePressX,mousePressY))
+            {
+                gameArea.setHoldingCheese(true);
+            }
+            else if (pepperoniContains(mousePressX,mousePressY))
+            {
+                gameArea.setHoldingPepperoni(true);
+            }
+
+            if (gameArea.getPlayerScoreBoard().getLivesLeft() <= 0)
+            {
+                if (gameOverButtonContains(mousePressX,mousePressY))
+                {
+                    window.setGameState(1);
+                }
+            }
         }
     }
 
@@ -106,5 +128,25 @@ public class MouseInput implements MouseListener {
     private boolean pepperoniContains(int x, int y)
     {
         return (x > 570 && x < 750 && y > 330 && y < 430);
+    }
+
+    private boolean gameOverButtonContains(int x, int y)
+    {
+        return (x > 475 && x < 775 && y > 400 && y < 525);
+    }
+
+    private boolean mainMenuStartContains(int x, int y)
+    {
+        return (x > 475 && x < 775 && y > 250 && y < 335);
+    }
+
+    private boolean mainMenuSettingsContains(int x, int y)
+    {
+        return (x > 475 && x < 775 && y > 375 && y < 460);
+    }
+
+    private boolean mainMenuQuitContains(int x, int y)
+    {
+        return (x > 475 && x < 775 && y > 500 && y < 585);
     }
 }
