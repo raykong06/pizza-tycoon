@@ -6,7 +6,6 @@ public class PlayerScoreBoard extends JPanel {
     private int playerPoints;
     private int pizzasMade;
     private int livesLeft;
-    private int timer;
     private Window window;
     private static long startTime = System.currentTimeMillis();
     private final Pizza cheesePizza = new Pizza(true,true,false,false,false,false);
@@ -22,8 +21,7 @@ public class PlayerScoreBoard extends JPanel {
     {
         playerPoints = 0;
         pizzasMade = 0;
-        livesLeft = 0;
-        timer = 60;
+        livesLeft = 3;
         this.window = window;
 
         cheesePizza.setName("Cheese Pizza");
@@ -220,6 +218,18 @@ public class PlayerScoreBoard extends JPanel {
 
     public int getLivesLeft() {
         return livesLeft;
+    }
+
+    public void setLivesLeft(int livesLeft) {
+        this.livesLeft = livesLeft;
+    }
+
+    public void setPlayerPoints(int playerPoints) {
+        this.playerPoints = playerPoints;
+    }
+
+    public void setPizzasMade(int pizzasMade) {
+        this.pizzasMade = pizzasMade;
     }
 
     // Draw a heart

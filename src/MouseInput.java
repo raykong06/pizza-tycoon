@@ -41,6 +41,7 @@ public class MouseInput implements MouseListener {
         {
             if (mainMenuStartContains(mousePressX,mousePressY))
             {
+                gameArea.reset();
                 window.setGameState(2);
             }
             if (mainMenuQuitContains(mousePressX,mousePressY))

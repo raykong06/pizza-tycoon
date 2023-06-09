@@ -113,7 +113,7 @@ public class GameArea extends JPanel{
 
         spriteCounter++;
         int speed = 8;
-        if (playerScoreBoard.getLivesLeft() >= 0)
+        if (playerScoreBoard.getLivesLeft() <= 0)
         {
             speed = 0;
         }
@@ -279,6 +279,15 @@ public class GameArea extends JPanel{
 
          */
         playerScoreBoard.paintComponent(graphics);
+    }
+
+    public void reset()
+    {
+        currentPizza = new Pizza();
+        playerScoreBoard.setLivesLeft(3);
+        spriteCounter = 0;
+        playerScoreBoard.setPlayerPoints(0);
+        playerScoreBoard.setPizzasMade(0);
     }
 
     public int getPizzaX() {
