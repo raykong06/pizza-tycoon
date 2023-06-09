@@ -150,7 +150,7 @@ public class Window extends Canvas implements Runnable {
         graphics.dispose();
     }
 
-    public GameArea getPlayer()
+    public GameArea getGameArea()
     {
         return gameArea;
     }

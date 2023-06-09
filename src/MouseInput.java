@@ -9,100 +9,22 @@ public class MouseInput implements MouseListener {
 
     private Window window;
     private GameArea gameArea;
-    private boolean mouseInitialClick;
-    private int mouseX;
-    private int mouseY;
+    private int mousePressX;
+    private int mousePressY;
+    private int mouseReleaseX;
+    private int mouseReleaseY;
 
     public MouseInput(Window window)
     {
         this.window = window;
         window.addMouseListener(this);
 
-        gameArea = window.getPlayer();
+        gameArea = window.getGameArea();
 
-        mouseX = 0;
-        mouseY = 0;
-    }
-
-
-
-    /*
-    @Override
-    public void keyTyped(KeyEvent e) {
-        int keyCode = e.getKeyCode();
-        switch(e.getKeyCode()) {
-            case KeyEvent.VK_UP:
-                System.out.println("up");
-                break;
-            case KeyEvent.VK_DOWN:
-                System.out.println("down");
-                // handle down
-                break;
-            case KeyEvent.VK_LEFT:
-                // handle left
-                break;
-            case KeyEvent.VK_RIGHT :
-                // handle right
-                break;
-        }
-    }
-
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-        {
-            window.getPlayer().setVelX(window.getPlayer().getSpeed());
-            rightKeyPressed = true;
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_LEFT)
-        {
-            window.getPlayer().setVelX(-window.getPlayer().getSpeed());
-            rightKeyPressed = false;
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_UP && window.getPlayer().getVelY() == 0)
-        {
-            window.getPlayer().setVelY(-window.getPlayer().getJumpVel());
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_DOWN)
-        {
-            window.getPlayer().setVelY(1);
-            upKeyPressed = false;
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_SPACE)
-        {
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        detectTricks();
-
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT && rightKeyPressed)
-        {
-            window.getPlayer().setVelX(0);
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_LEFT && !rightKeyPressed)
-        {
-            window.getPlayer().setVelX(0);
-        }
-        //else if (e.getKeyCode() == KeyEvent.VK_UP && upKeyPressed)
-        //{
-        //    window.getPlayer().setVelY(0);
-        //}
-        else if (e.getKeyCode() == KeyEvent.VK_DOWN && !upKeyPressed)
-        {
-            window.getPlayer().setVelY(0);
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_SPACE)
-        {
-        }
-    }
-
-     */
-
-    public void detectTricks()
-    {
+        mousePressX = 0;
+        mousePressY = 0;
+        mouseReleaseX = 0;
+        mouseReleaseY = 0;
     }
 
     @Override
@@ -113,20 +35,27 @@ public class MouseInput implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         System.out.println("Press");
+        mousePressX = e.getX();
+        mousePressY = e.getY();
 
+        if (tomatoSauceContains(mousePressX, mousePressY))
+        {
+            gameArea.setHoldingTomatoSauce(true);
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println("Release");
-        System.out.println(e.getX() + ", " + e.getY());
-        mouseX = e.getX();
-        mouseY = e.getY();
+        //System.out.println("Release");
+        //System.out.println(e.getX() + ", " + e.getY());
+        mouseReleaseX = e.getX();
+        mouseReleaseY = e.getY();
 
-        if (contains(gameArea.getPizzaX(), gameArea.getPizzaY()))
+        if (releaseContains(gameArea.getPizzaX(), gameArea.getPizzaY()) && gameArea.isHoldingTomatoSauce())
         {
             gameArea.getCurrentPizza().setTomatoSauce(true);
         }
+        gameArea.setHoldingTomatoSauce(false);
     }
 
     @Override
@@ -139,9 +68,15 @@ public class MouseInput implements MouseListener {
 
     }
 
-    public boolean contains(int x, int y){
+    private boolean releaseContains(int x, int y)
+    {
         int radius = 90;
-        return Point2D.distance(mouseX, mouseY, x, y) < radius;
+        return Point2D.distance(mouseReleaseX, mouseReleaseY, x, y) < radius;
+    }
+
+    private boolean tomatoSauceContains(int x, int y)
+    {
+        return (x > 135 && x < 185 && y > 280 && y < 380);
     }
 
 }

@@ -29,7 +29,12 @@ public class GameArea extends JPanel{
     private int pizzaX;
     private int pizzaY;
     private Pizza currentPizza;
-    private boolean resetPizza;
+    private boolean holdingTomatoSauce;
+    private boolean holdingCheese;
+    private boolean holdingPepperoni;
+    private boolean holdingPineapple;
+    private boolean holdingMushrooms;
+    private boolean holdingGreenPeppers;
 
     public GameArea(Window window)
     {
@@ -66,7 +71,8 @@ public class GameArea extends JPanel{
         pizzaY = 525;
 
         currentPizza = new Pizza();
-        resetPizza = true;
+
+        holdingTomatoSauce = false;
     }
 
     public void tick()
@@ -103,7 +109,6 @@ public class GameArea extends JPanel{
         if (spriteCounter * speed - 250 > 1306)
         {
             spriteCounter = 0;
-            resetPizza = true;
             playerScoreBoard.updateScoreBoard(currentPizza);
             playerScoreBoard.generateRandomPizzaRecipe();
             currentPizza.setTomatoSauce(false);
@@ -148,12 +153,35 @@ public class GameArea extends JPanel{
         graphics2D.drawLine(0, 350, 1250, 350);
         graphics2D.drawLine(0, 500, 1250, 500);
 
-        // Tomato Sauce
+        // Tomato Sauce Shelf
         graphics2D.setPaint(new Color(51,51,51));
         graphics2D.fillRect(60,360,200,75);
         graphics2D.setPaint(new Color(0,0,0));
         graphics2D.setStroke(new BasicStroke(3));
         graphics2D.drawRect(60,360,200,75);
+        graphics2D.setPaint(new Color(255,77,0));
+        graphics2D.fillRoundRect(135,280,50,100,5,5);
+        graphics2D.fillPolygon(new int[] {145,175,160},new int[] {380,380,420},3);
+        graphics2D.setPaint(new Color(0,0,0));
+        graphics2D.drawRoundRect(135,280,50,100,5,5);
+        graphics2D.setStroke(new BasicStroke(3,BasicStroke.CAP_ROUND,BasicStroke.JOIN_BEVEL));
+        graphics2D.drawPolygon(new int[] {145,175,160},new int[] {380,380,420},3);
+
+        // Dragging Tomato Sauce
+        if (holdingTomatoSauce)
+        {
+            Point p = MouseInfo.getPointerInfo().getLocation();
+
+            int mousePressX = p.x - 25;
+            int mousePressY = p.y - 125;
+            graphics2D.setPaint(new Color(255,77,0));
+            graphics2D.fillRoundRect(mousePressX,mousePressY,50,100,5,5);
+            graphics2D.fillPolygon(new int[] {mousePressX + 10,mousePressX + 40,mousePressX + 25},new int[] {mousePressY + 100,mousePressY + 100,mousePressY + 140},3);
+            graphics2D.setPaint(new Color(0,0,0));
+            graphics2D.drawRoundRect(mousePressX,mousePressY,50,100,5,5);
+            graphics2D.setStroke(new BasicStroke(3,BasicStroke.CAP_ROUND,BasicStroke.JOIN_BEVEL));
+            graphics2D.drawPolygon(new int[] {mousePressX + 10,mousePressX + 40,mousePressX + 25},new int[] {mousePressY + 100,mousePressY + 100,mousePressY + 140},3);
+        }
 
         /*
         spriteCounter++;
@@ -193,6 +221,54 @@ public class GameArea extends JPanel{
 
     public Pizza getCurrentPizza() {
         return currentPizza;
+    }
+
+    public boolean isHoldingTomatoSauce() {
+        return holdingTomatoSauce;
+    }
+
+    public void setHoldingTomatoSauce(boolean holdingTomatoSauce) {
+        this.holdingTomatoSauce = holdingTomatoSauce;
+    }
+
+    public boolean isHoldingCheese() {
+        return holdingCheese;
+    }
+
+    public void setHoldingCheese(boolean holdingCheese) {
+        this.holdingCheese = holdingCheese;
+    }
+
+    public boolean isHoldingPepperoni() {
+        return holdingPepperoni;
+    }
+
+    public void setHoldingPepperoni(boolean holdingPepperoni) {
+        this.holdingPepperoni = holdingPepperoni;
+    }
+
+    public boolean isHoldingPineapple() {
+        return holdingPineapple;
+    }
+
+    public void setHoldingPineapple(boolean holdingPineapple) {
+        this.holdingPineapple = holdingPineapple;
+    }
+
+    public boolean isHoldingMushrooms() {
+        return holdingMushrooms;
+    }
+
+    public void setHoldingMushrooms(boolean holdingMushrooms) {
+        this.holdingMushrooms = holdingMushrooms;
+    }
+
+    public boolean isHoldingGreenPeppers() {
+        return holdingGreenPeppers;
+    }
+
+    public void setHoldingGreenPeppers(boolean holdingGreenPeppers) {
+        this.holdingGreenPeppers = holdingGreenPeppers;
     }
 
     public double getVelX() {
