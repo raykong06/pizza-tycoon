@@ -36,15 +36,56 @@ public class MouseInput implements MouseListener {
 
         if (window.getGameState() == 1)
         {
-            if (mainMenuStartContains(mousePressX,mousePressY))
+            if (window.getMenuHandler().isSettingsDialog())
             {
-                gameArea.reset();
-                window.setGameState(2);
+                if (mainMenuSettingsDialogContains(mousePressX,mousePressY))
+                {
+                    window.getMenuHandler().setSettingsDialog(false);
+                }
+                else if (settingsDialogMinusContains(mousePressX,mousePressY))
+                {
+                    int newSpeed = window.getGameArea().getSpeed();
+                    if (newSpeed - 1 == 0)
+                    {
+                        newSpeed = 1;
+                    }
+                    else
+                    {
+                        newSpeed--;
+                    }
+
+                    window.getGameArea().setSpeed(newSpeed);
+                }
+                else if (settingsDialogPlusContains(mousePressX,mousePressY))
+                {
+                    int newSpeed = window.getGameArea().getSpeed();
+                    if (newSpeed + 1 == 11)
+                    {
+                        newSpeed = 10;
+                    }
+                    else
+                    {
+                        newSpeed++;
+                    }
+                    window.getGameArea().setSpeed(newSpeed);
+                }
             }
-            if (mainMenuQuitContains(mousePressX,mousePressY))
+            else
             {
-                window.getScoreFileWriter().saveData();
-                System.exit(0);
+                if (mainMenuStartContains(mousePressX,mousePressY))
+                {
+                    gameArea.reset();
+                    window.setGameState(2);
+                }
+                else if (mainMenuSettingsContains(mousePressX,mousePressY))
+                {
+                    window.getMenuHandler().setSettingsDialog(true);
+                }
+                else if (mainMenuQuitContains(mousePressX,mousePressY))
+                {
+                    window.getScoreFileWriter().saveData();
+                    System.exit(0);
+                }
             }
         }
 
@@ -189,5 +230,20 @@ public class MouseInput implements MouseListener {
     private boolean mainMenuQuitContains(int x, int y)
     {
         return (x > 475 && x < 775 && y > 500 && y < 585);
+    }
+
+    private boolean mainMenuSettingsDialogContains(int x, int y)
+    {
+        return (x > 475 && x < 775 && y > 425 && y < 550);
+    }
+
+    private boolean settingsDialogMinusContains(int x, int y)
+    {
+        return (x > 350 && x < 500 && y > 300 && y < 400);
+    }
+
+    private boolean settingsDialogPlusContains(int x, int y)
+    {
+        return (x > 750 && x < 900 && y > 300 && y < 400);
     }
 }

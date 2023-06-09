@@ -15,9 +15,13 @@ public class ScoreFileWriter {
             File f = new File("src/score.txt");
             Scanner s = new Scanner(f);
             while (s.hasNextLine()) {
-                String data = s.nextLine();
-                int highScore = Integer.parseInt(data);
+                String line = s.nextLine();
+                String[] data = line.split(",");
+
+                int highScore = Integer.parseInt(data[0]);
+                int speed = Integer.parseInt(data[1]);
                 PlayerScoreBoard.setHighScore(highScore);
+                GameArea.setSpeed(speed);
             }
             s.close();
         } catch (FileNotFoundException fnf) {
@@ -30,7 +34,7 @@ public class ScoreFileWriter {
             File f = new File("src/score.txt");
             f.createNewFile();
             FileWriter fw = new FileWriter(f);
-            fw.write(String.valueOf(PlayerScoreBoard.getHighScore()));
+            fw.write(PlayerScoreBoard.getHighScore() + "," + GameArea.getSpeed());
             fw.close();
         }
         catch (IOException ioe) {

@@ -4,7 +4,7 @@ import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
 public class GameArea extends JPanel{
-    private int speed;
+    private static int speed;
     private ImageIcon cheese;
     private ImageIcon pepperoniShelf;
     private ImageIcon pepperoniPlace;
@@ -39,8 +39,7 @@ public class GameArea extends JPanel{
         mushrooms = new ImageIcon("img/mushrooms.png");
         jalapenos = new ImageIcon("img/jalapenos.png");
         gameAreaBackground = new ImageIcon("img/game_area_background.png");
-
-        speed = 1;
+        
         spriteCounter = 0;
 
         pizzaX = -250;
@@ -58,10 +57,9 @@ public class GameArea extends JPanel{
         gameAreaBackground.paintIcon(this, graphics2D, 0, 0);
 
         spriteCounter++;
-        speed = 4;
         if (playerScoreBoard.getLivesLeft() <= 0)
         {
-            speed = 0;
+            spriteCounter = 0;
         }
 
         if (spriteCounter * speed - 250 > 1306)
@@ -357,8 +355,12 @@ public class GameArea extends JPanel{
         this.holdingJalapenos = holdingJalapenos;
     }
 
-    public int getSpeed() {
+    public static int getSpeed() {
         return speed;
+    }
+
+    public static void setSpeed(int speed) {
+        GameArea.speed = speed;
     }
 
     public PlayerScoreBoard getPlayerScoreBoard()
