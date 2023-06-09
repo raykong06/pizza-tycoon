@@ -58,7 +58,7 @@ public class GameArea extends JPanel{
         gameAreaBackground.paintIcon(this, graphics2D, 0, 0);
 
         spriteCounter++;
-        speed = 1;
+        speed = 4;
         if (playerScoreBoard.getLivesLeft() <= 0)
         {
             speed = 0;

@@ -17,6 +17,7 @@ public class ScoreFileWriter {
             while (s.hasNextLine()) {
                 String data = s.nextLine();
                 int highScore = Integer.parseInt(data);
+                PlayerScoreBoard.setHighScore(highScore);
             }
             s.close();
         } catch (FileNotFoundException fnf) {
@@ -28,13 +29,14 @@ public class ScoreFileWriter {
         try {
             File f = new File("src/score.txt");
             f.createNewFile();
-            FileWriter fw = new FileWriter("src/score.txt");
-            fw.write(PlayerScoreBoard.getHighScore());
+            FileWriter fw = new FileWriter(f);
+            fw.write(String.valueOf(PlayerScoreBoard.getHighScore()));
             fw.close();
         }
-        catch (IOException e) {
-            System.out.println("Unable to create file");
-            e.printStackTrace();
+        catch (IOException ioe) {
+            System.out.println("Writing file failed");
+            System.out.println(ioe);
         }
+
     }
 }

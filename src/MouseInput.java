@@ -43,6 +43,7 @@ public class MouseInput implements MouseListener {
             }
             if (mainMenuQuitContains(mousePressX,mousePressY))
             {
+                window.getScoreFileWriter().saveData();
                 System.exit(0);
             }
         }

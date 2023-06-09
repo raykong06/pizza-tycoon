@@ -43,6 +43,6 @@ public class MenuHandler extends JPanel{
         graphics2D.drawRoundRect(475,500,300,85,50,50);
         graphics2D.setPaint(new Color(45,41,45));
         graphics2D.setFont(new Font("Courier New", Font.BOLD, 32));
-        graphics2D.drawString("Quit Game", window.getWidth() / 2 - (graphics2D.getFontMetrics().stringWidth("Quit Game") / 2), 550);
+        graphics2D.drawString("Quit & Save", window.getWidth() / 2 - (graphics2D.getFontMetrics().stringWidth("Quit & Save") / 2), 550);
     }
 }

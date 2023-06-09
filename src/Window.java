@@ -130,4 +130,7 @@ public class Window extends Canvas implements Runnable {
     public void setGameState(int gameState) {
         this.gameState = gameState;
     }
+    public ScoreFileWriter getScoreFileWriter() {
+        return scoreFileWriter;
+    }
 }
