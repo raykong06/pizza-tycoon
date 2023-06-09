@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.geom.Path2D;
 
 public class PlayerScoreBoard extends JPanel {
+    private static int highScore;
     private int playerPoints;
     private int pizzasMade;
     private int livesLeft;
@@ -123,7 +124,7 @@ public class PlayerScoreBoard extends JPanel {
             graphics2D.drawString("Jalapenos", displayTopCornerX + 420 - actualWidth, displayTopCornerY + 150 + (j * 15));
         }
 
-        // Player Info (Points + Pizzas Made)
+        // Player Info (Points + Pizzas Made + High Score)
         graphics2D.setPaint(new Color(241,243,244));
         graphics2D.fillRoundRect(displayTopCornerX + 260,displayTopCornerY + 20,170,100,30,15);
         graphics2D.setPaint(new Color(64,65,64));
@@ -134,18 +135,21 @@ public class PlayerScoreBoard extends JPanel {
         graphics2D.drawString("PIZZAS MADE",displayTopCornerX + 270,displayTopCornerY + 60);
         actualWidth = graphics2D.getFontMetrics().stringWidth(String.valueOf(pizzasMade));
         graphics2D.drawString(String.valueOf(pizzasMade),displayTopCornerX + 420 - actualWidth,displayTopCornerY + 60);
+        graphics2D.drawString("HIGH SCORE",displayTopCornerX + 270,displayTopCornerY + 80);
+        actualWidth = graphics2D.getFontMetrics().stringWidth(String.valueOf(highScore));
+        graphics2D.drawString(String.valueOf(highScore),displayTopCornerX + 420 - actualWidth,displayTopCornerY + 80);
 
         // Lives Left
         graphics2D.setPaint(new Color(196,0,54));
         graphics2D.setStroke(new BasicStroke(3));
         for (int i = 0; i < 3; i++)
         {
-            Path2D heartPath = drawHeartPath(displayTopCornerX + 280 + (i * 50),displayTopCornerY + 80,30,30);
+            Path2D heartPath = drawHeartPath(displayTopCornerX + 285 + (i * 50),displayTopCornerY + 90,20,20);
             graphics2D.draw(heartPath);
         }
         for (int i = 0; i < livesLeft; i++)
         {
-            Path2D heartPath = drawHeartPath(displayTopCornerX + 280 + (i * 50),displayTopCornerY + 80,30,30);
+            Path2D heartPath = drawHeartPath(displayTopCornerX + 285 + (i * 50),displayTopCornerY + 90,20,20);
             graphics2D.fill(heartPath);
         }
 
@@ -168,6 +172,11 @@ public class PlayerScoreBoard extends JPanel {
             graphics2D.setFont(new Font("Courier", Font.BOLD, 32));
             graphics2D.drawString("Main", window.getWidth() / 2 - (graphics2D.getFontMetrics().stringWidth("Main") / 2), 450);
             graphics2D.drawString("Menu", window.getWidth() / 2 - (graphics2D.getFontMetrics().stringWidth("Main") / 2), 500);
+
+            if (playerPoints > highScore)
+            {
+                setHighScore(playerPoints);
+            }
         }
     }
 
@@ -223,6 +232,14 @@ public class PlayerScoreBoard extends JPanel {
 
     public void setPizzasMade(int pizzasMade) {
         this.pizzasMade = pizzasMade;
+    }
+
+    public static int getHighScore() {
+        return highScore;
+    }
+
+    public static void setHighScore(int highScore) {
+        PlayerScoreBoard.highScore = highScore;
     }
 
     // Draw a heart

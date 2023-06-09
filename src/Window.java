@@ -3,8 +3,8 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 public class Window extends Canvas implements Runnable {
-
     private static final long serialVersionUID = 1L;
+    private ScoreFileWriter scoreFileWriter;
     private Thread thread;
     private boolean running;
     private JFrame frame;
@@ -16,6 +16,7 @@ public class Window extends Canvas implements Runnable {
     // Runs everytime a new window is created
     public Window(String title)
     {
+        scoreFileWriter = new ScoreFileWriter();
         running = false;
         gameArea = new GameArea(this);
         mouseInput = new MouseInput(this);
