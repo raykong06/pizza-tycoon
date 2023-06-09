@@ -23,6 +23,8 @@ public class GameArea extends JPanel{
     private ArrayList<ImageIcon> imgArr;
     private ImageIcon display;
     private ImageIcon cheese;
+    private ImageIcon pepperoniShelf;
+    private ImageIcon pepperoniPlace;
     private int spriteCounter;
     private int spriteNum;
     private PlayerScoreBoard playerScoreBoard;
@@ -66,6 +68,8 @@ public class GameArea extends JPanel{
         imgArr.add(motion6);
 
         cheese = new ImageIcon("img/cheese.png");
+        pepperoniShelf = new ImageIcon("img/pepperoni_shelf.png");
+        pepperoniPlace = new ImageIcon("img/pepperoni_place.png");
 
         spriteCounter = 0;
         spriteNum = 0;
@@ -107,7 +111,7 @@ public class GameArea extends JPanel{
         playerScoreBoard.paintComponent(graphics);
 
         spriteCounter++;
-        int speed = 5;
+        int speed = 8;
 
         if (spriteCounter * speed - 250 > 1306)
         {
@@ -116,6 +120,7 @@ public class GameArea extends JPanel{
             playerScoreBoard.generateRandomPizzaRecipe();
             currentPizza.setTomatoSauce(false);
             currentPizza.setCheese(false);
+            currentPizza.setPepperoni(false);
         }
 
         // Conveyor Belt
@@ -145,8 +150,12 @@ public class GameArea extends JPanel{
         {
             for (int i = 0; i < 3; i++)
             {
-                cheese.paintIcon(this,graphics2D,-250 + (spriteCounter * speed),525 + (i * 30));
+                cheese.paintIcon(this,graphics2D,-250 + (spriteCounter * speed),530 + (i * 27));
             }
+        }
+        if (currentPizza.isPepperoni())
+        {
+            pepperoniPlace.paintIcon(this,graphics2D,-215 + (spriteCounter * speed),530);
         }
 
         graphics2D.setStroke(new BasicStroke(10));
@@ -186,7 +195,19 @@ public class GameArea extends JPanel{
         graphics2D.setPaint(new Color(0,0,0));
         graphics2D.setStroke(new BasicStroke(3));
         graphics2D.drawRect(300,360,200,75);
-        cheese.paintIcon(this,graphics2D,300,350);
+        cheese.paintIcon(this,graphics2D,285 + 30,350);
+        cheese.paintIcon(this,graphics2D,285,360);
+        cheese.paintIcon(this,graphics2D,285 + 15,340);
+
+        // Pepperoni Shelf
+        graphics2D.setPaint(new Color(51,51,51));
+        graphics2D.fillRect(560,360,200,75);
+        graphics2D.setPaint(new Color(0,0,0));
+        graphics2D.setStroke(new BasicStroke(3));
+        graphics2D.drawRect(560,360,200,75);
+        pepperoniShelf.paintIcon(this,graphics2D,570 + 30,330);
+        pepperoniShelf.paintIcon(this,graphics2D, 570,330);
+        pepperoniShelf.paintIcon(this,graphics2D,570 + 15,330);
 
         // Dragging Tomato Sauce
         if (holdingTomatoSauce)
@@ -213,6 +234,17 @@ public class GameArea extends JPanel{
             int mousePressY = p.y - 40 - window.getLocationOnScreen().y;
 
             cheese.paintIcon(this,graphics2D,mousePressX,mousePressY);
+        }
+
+        // Dragging Pepperoni
+        if (holdingPepperoni)
+        {
+            Point p = MouseInfo.getPointerInfo().getLocation();
+
+            int mousePressX = p.x - 65 - window.getLocationOnScreen().x;
+            int mousePressY = p.y - 67 - window.getLocationOnScreen().y;
+
+            pepperoniPlace.paintIcon(this,graphics2D,mousePressX,mousePressY);
         }
 
         /*

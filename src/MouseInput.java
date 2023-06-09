@@ -46,12 +46,14 @@ public class MouseInput implements MouseListener {
         {
             gameArea.setHoldingCheese(true);
         }
+        else if (pepperoniContains(mousePressX,mousePressY))
+        {
+            gameArea.setHoldingPepperoni(true);
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        //System.out.println("Release");
-        //System.out.println(e.getX() + ", " + e.getY());
         mouseReleaseX = e.getX();
         mouseReleaseY = e.getY();
 
@@ -65,9 +67,14 @@ public class MouseInput implements MouseListener {
             {
                 gameArea.getCurrentPizza().setCheese(true);
             }
+            if (gameArea.isHoldingPepperoni())
+            {
+                gameArea.getCurrentPizza().setPepperoni(true);
+            }
         }
         gameArea.setHoldingTomatoSauce(false);
         gameArea.setHoldingCheese(false);
+        gameArea.setHoldingPepperoni(false);
     }
 
     @Override
@@ -94,5 +101,10 @@ public class MouseInput implements MouseListener {
     private boolean cheeseContains(int x, int y)
     {
         return (x > 310 && x < 500 && y > 360 && y < 430);
+    }
+
+    private boolean pepperoniContains(int x, int y)
+    {
+        return (x > 570 && x < 750 && y > 330 && y < 430);
     }
 }
