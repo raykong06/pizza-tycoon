@@ -9,14 +9,28 @@ public class PlayerScoreBoard extends JPanel {
     private int timer;
     private Window window;
     private static long startTime = System.currentTimeMillis();
+    private final Pizza plainPizza = new Pizza(true,true,false,false,false,false);
+    private final Pizza pepperoniPizza = new Pizza(true,true,true,false,false,false);
+    private final Pizza allInPizza = new Pizza(true,true,true,true,true,true);
+    private final Pizza dryPizza = new Pizza(false,true,true,false,true,true);
+    private final Pizza veganPizza = new Pizza(true,false,false,true,true,true);
+    private Pizza currentPizza;
 
     public PlayerScoreBoard(Window window)
     {
-        playerPoints = 5000000;
-        pizzasMade = 5000;
-        livesLeft = 2;
+        playerPoints = 0;
+        pizzasMade = 0;
+        livesLeft = 3;
         timer = 60;
         this.window = window;
+
+        plainPizza.setName("Plain Pizza");
+        pepperoniPizza.setName("Pepperoni Pizza");
+        allInPizza.setName("All In Pizza");
+        dryPizza.setName("Dry Pizza");
+        veganPizza.setName("Vegan Pizza");
+
+        generateRandomPizzaRecipe();
     }
 
     public void paintComponent(Graphics graphics)
@@ -26,6 +40,7 @@ public class PlayerScoreBoard extends JPanel {
 
         int displayTopCornerX = window.getWidth() - 500;
         int displayTopCornerY = 50;
+
         // Display Scoreboard
         graphics2D.setPaint(new Color(193,202,218));
         graphics2D.fillRoundRect(displayTopCornerX,displayTopCornerY,450,250,30,20);
@@ -35,9 +50,9 @@ public class PlayerScoreBoard extends JPanel {
         // Pizza Info
         graphics2D.setPaint(new Color(10,67,124));
         graphics2D.setFont(new Font("Courier New", Font.BOLD,20));
-        graphics2D.drawString("Cheese Pizza", displayTopCornerX + 25, displayTopCornerY + 40);
+        graphics2D.drawString(currentPizza.getName(), displayTopCornerX + 25, displayTopCornerY + 40);
 
-        // Player Info
+        // Player Info (Points + Pizzas Made)
         graphics2D.setPaint(new Color(241,243,244));
         graphics2D.fillRoundRect(displayTopCornerX + 260,displayTopCornerY + 20,170,100,30,15);
         graphics2D.setPaint(new Color(64,65,64));
@@ -49,6 +64,7 @@ public class PlayerScoreBoard extends JPanel {
         actualWidth = graphics2D.getFontMetrics().stringWidth(String.valueOf(pizzasMade));
         graphics2D.drawString(String.valueOf(pizzasMade),displayTopCornerX + 420 - actualWidth,displayTopCornerY + 60);
 
+        // Lives Left
         graphics2D.setPaint(new Color(196,0,54));
         graphics2D.setStroke(new BasicStroke(3));
         for (int i = 0; i < 3; i++)
@@ -95,6 +111,44 @@ public class PlayerScoreBoard extends JPanel {
     public void setStartTime()
     {
         startTime = System.currentTimeMillis();
+    }
+
+    public void updateScoreBoard(Pizza inputPizza)
+    {
+        if (inputPizza.comparePizza(currentPizza))
+        {
+            pizzasMade++;
+            playerPoints += 10 * currentPizza.getNumIngredients();
+        }
+        else
+        {
+            livesLeft--;
+        }
+    }
+
+    public void generateRandomPizzaRecipe()
+    {
+        int randomInt = 1 + (int)(Math.random() * 5);
+        if (randomInt == 1)
+        {
+            currentPizza = plainPizza;
+        }
+        else if (randomInt == 2)
+        {
+            currentPizza = pepperoniPizza;
+        }
+        else if (randomInt == 3)
+        {
+            currentPizza = allInPizza;
+        }
+        else if (randomInt == 4)
+        {
+            currentPizza = dryPizza;
+        }
+        else if (randomInt == 5)
+        {
+            currentPizza = veganPizza;
+        }
     }
 
     // Draw a heart

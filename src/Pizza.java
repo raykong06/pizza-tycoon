@@ -8,6 +8,7 @@ public class Pizza {
     private boolean mushrooms;
     private boolean greenPepper;
     private ArrayList<Boolean> ingredientList;
+    private String name;
 
     public Pizza()
     {
@@ -30,6 +31,8 @@ public class Pizza {
         ingredientList.add(pineapple);
         ingredientList.add(mushrooms);
         ingredientList.add(greenPepper);
+
+        name = "";
     }
 
     public ArrayList<Boolean> getIngredientList()
@@ -38,18 +41,39 @@ public class Pizza {
     }
 
     // compares the ingredients of the two pizzas to see if they are equal
-    public boolean comparePizza(Pizza pizzaRecipe, Pizza otherPizza)
+    public boolean comparePizza(Pizza pizzaRecipe)
     {
         boolean isEqual = true;
         for (int i = 0; i < pizzaRecipe.getIngredientList().size(); i++)
         {
-            if (pizzaRecipe.getIngredientList().get(i) != otherPizza.getIngredientList().get(i))
+            if (pizzaRecipe.getIngredientList().get(i) != this.getIngredientList().get(i))
             {
                 isEqual = false;
             }
         }
 
         return isEqual;
+    }
+
+    public int getNumIngredients()
+    {
+        int numIngredients = 0;
+        for (int i = 0; i < ingredientList.size(); i++)
+        {
+            if (ingredientList.get(i))
+            {
+                numIngredients++;
+            }
+        }
+        return numIngredients;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean isTomatoSauce() {
@@ -99,5 +123,4 @@ public class Pizza {
     public void setGreenPepper(boolean greenPepper) {
         this.greenPepper = greenPepper;
     }
-
 }

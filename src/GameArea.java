@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
-public class Player extends JPanel{
+public class GameArea extends JPanel{
 
     private double xCoord;
     private double yCoord;
@@ -29,8 +29,9 @@ public class Player extends JPanel{
     private int pizzaX;
     private int pizzaY;
     private Pizza currentPizza;
+    private boolean resetPizza;
 
-    public Player(Window window)
+    public GameArea(Window window)
     {
         this.window = window;
         xCoord = 1000 / 2.0;
@@ -65,6 +66,7 @@ public class Player extends JPanel{
         pizzaY = 525;
 
         currentPizza = new Pizza();
+        resetPizza = true;
     }
 
     public void tick()
@@ -90,6 +92,7 @@ public class Player extends JPanel{
     {
         //display = imgArr.get(spriteNum);
         super.paintComponent(graphics);
+        Graphics2D graphics2D = (Graphics2D) graphics;
         //background.paintIcon(this, graphics, 0, 0);
         //display.paintIcon(this, graphics, (int)xCoord, (int)yCoord);
         playerScoreBoard.paintComponent(graphics);
@@ -100,9 +103,11 @@ public class Player extends JPanel{
         if (spriteCounter * speed - 250 > 1306)
         {
             spriteCounter = 0;
+            resetPizza = true;
+            playerScoreBoard.updateScoreBoard(currentPizza);
+            playerScoreBoard.generateRandomPizzaRecipe();
+            currentPizza.setTomatoSauce(false);
         }
-
-        Graphics2D graphics2D = (Graphics2D) graphics;
 
         // Conveyor Belt
         graphics2D.setPaint(new Color(198,198,198));
@@ -119,9 +124,6 @@ public class Player extends JPanel{
             graphics2D.drawLine(conveyorLineX + (conveyorLineGap * i), 500, conveyorLineX - 25 + (conveyorLineGap * i), 700);
         }
 
-        // Stand
-
-
         // Pizza
         graphics2D.setPaint(new Color(244,203,146));
         if (currentPizza.isTomatoSauce())
@@ -135,11 +137,23 @@ public class Player extends JPanel{
         pizzaX = -250 + (spriteCounter * speed) + 100;
         pizzaY = 525 + 75;
 
-        if (pizzaX > 1400)
-        {
-            currentPizza.setTomatoSauce(false);
-        }
+        // Ingredient Shelf
+        graphics2D.setPaint(new Color(102,102,102));
+        graphics2D.fillRect(-100,350,1400,140);
+        graphics2D.setPaint(new Color(103,51,1));
+        graphics2D.fillRect(-100,460,1400,40);
+        graphics2D.setPaint(new Color(0,0,0));
+        graphics2D.setStroke(new BasicStroke(4));
+        graphics2D.drawLine(0, 460, 1250, 460);
+        graphics2D.drawLine(0, 350, 1250, 350);
+        graphics2D.drawLine(0, 500, 1250, 500);
 
+        // Tomato Sauce
+        graphics2D.setPaint(new Color(51,51,51));
+        graphics2D.fillRect(60,360,200,75);
+        graphics2D.setPaint(new Color(0,0,0));
+        graphics2D.setStroke(new BasicStroke(3));
+        graphics2D.drawRect(60,360,200,75);
 
         /*
         spriteCounter++;

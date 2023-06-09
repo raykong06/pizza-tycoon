@@ -8,7 +8,7 @@ public class Window extends Canvas implements Runnable {
     private Thread thread;
     private boolean running;
     private JFrame frame;
-    private Player player;
+    private GameArea gameArea;
     private MouseInput mouseInput;
     private LevelHandler levelHandler;
     private MenuHandler menuHandler;
@@ -20,7 +20,7 @@ public class Window extends Canvas implements Runnable {
     public Window(String title)
     {
         running = false;
-        player = new Player(this);
+        gameArea = new GameArea(this);
         mouseInput = new MouseInput(this);
         levelHandler = new LevelHandler();
         //menuHandler1 = new MenuHandler1(this);
@@ -110,7 +110,7 @@ public class Window extends Canvas implements Runnable {
 
     // updates the window
     public void tick(){
-        player.tick();
+        gameArea.tick();
     }
 
     // paints onto the window
@@ -129,7 +129,7 @@ public class Window extends Canvas implements Runnable {
             frame.setVisible(true);
             graphics.setColor(Color.white);
             graphics.fillRect(0,0, this.getWidth(), this.getHeight());
-            player.paintComponent(graphics);
+            gameArea.paintComponent(graphics);
         }
         else if (gameState == 2)
         {
@@ -143,15 +143,15 @@ public class Window extends Canvas implements Runnable {
         }
         else if (gameState == 3)
         {
-            player.paintComponent(graphics);
+            gameArea.paintComponent(graphics);
         }
 
         bs.show();
         graphics.dispose();
     }
 
-    public Player getPlayer()
+    public GameArea getPlayer()
     {
-        return player;
+        return gameArea;
     }
 }

@@ -8,7 +8,7 @@ public class MouseInput implements MouseListener {
     private boolean upKeyPressed = false;
 
     private Window window;
-    private Player player;
+    private GameArea gameArea;
     private boolean mouseInitialClick;
     private int mouseX;
     private int mouseY;
@@ -18,7 +18,7 @@ public class MouseInput implements MouseListener {
         this.window = window;
         window.addMouseListener(this);
 
-        player = window.getPlayer();
+        gameArea = window.getPlayer();
 
         mouseX = 0;
         mouseY = 0;
@@ -123,9 +123,9 @@ public class MouseInput implements MouseListener {
         mouseX = e.getX();
         mouseY = e.getY();
 
-        if (contains(player.getPizzaX(), player.getPizzaY()))
+        if (contains(gameArea.getPizzaX(), gameArea.getPizzaY()))
         {
-            player.getCurrentPizza().setTomatoSauce(true);
+            gameArea.getCurrentPizza().setTomatoSauce(true);
         }
     }
 

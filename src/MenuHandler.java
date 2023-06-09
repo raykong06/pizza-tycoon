@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 public class MenuHandler extends JFrame {
     private JButton quitGameButton;
     private JButton challengesButton;
-    private JTextArea snowSurferTextArea;
+    private JTextArea pizzaTycoonTextArea;
     private JPanel menuHandler;
     private JButton startGameButton;
     private int option;
