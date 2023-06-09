@@ -35,23 +35,16 @@ public class Pizza {
         name = "";
     }
 
-    public ArrayList<Boolean> getIngredientList()
-    {
-        return ingredientList;
-    }
-
     // compares the ingredients of the two pizzas to see if they are equal
     public boolean comparePizza(Pizza pizzaRecipe)
     {
         boolean isEqual = true;
-        for (int i = 0; i < pizzaRecipe.getIngredientList().size(); i++)
-        {
-            if (pizzaRecipe.getIngredientList().get(i) != this.getIngredientList().get(i))
-            {
-                isEqual = false;
-            }
-        }
 
+        if (this.tomatoSauce != pizzaRecipe.tomatoSauce || this.cheese != pizzaRecipe.cheese || this.pepperoni != pizzaRecipe.pepperoni ||
+                this.pineapple != pizzaRecipe.pineapple || this.mushrooms != pizzaRecipe.mushrooms || this.greenPepper != pizzaRecipe.greenPepper)
+        {
+            isEqual = false;
+        }
         return isEqual;
     }
 

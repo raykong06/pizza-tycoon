@@ -107,7 +107,7 @@ public class GameArea extends JPanel{
         playerScoreBoard.paintComponent(graphics);
 
         spriteCounter++;
-        int speed = 3;
+        int speed = 5;
 
         if (spriteCounter * speed - 250 > 1306)
         {
@@ -115,6 +115,7 @@ public class GameArea extends JPanel{
             playerScoreBoard.updateScoreBoard(currentPizza);
             playerScoreBoard.generateRandomPizzaRecipe();
             currentPizza.setTomatoSauce(false);
+            currentPizza.setCheese(false);
         }
 
         // Conveyor Belt

@@ -128,7 +128,7 @@ public class PlayerScoreBoard extends JPanel {
 
     public void generateRandomPizzaRecipe()
     {
-        int randomInt = 1 + (int)(Math.random() * 5);
+        int randomInt = 1 + (int)(Math.random() * 1);
         if (randomInt == 1)
         {
             currentPizza = plainPizza;
