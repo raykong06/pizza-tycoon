@@ -25,6 +25,7 @@ public class GameArea extends JPanel{
     private ImageIcon cheese;
     private ImageIcon pepperoniShelf;
     private ImageIcon pepperoniPlace;
+    private ImageIcon gameAreaBackground;
     private int spriteCounter;
     private int spriteNum;
     private PlayerScoreBoard playerScoreBoard;
@@ -70,6 +71,7 @@ public class GameArea extends JPanel{
         cheese = new ImageIcon("img/cheese.png");
         pepperoniShelf = new ImageIcon("img/pepperoni_shelf.png");
         pepperoniPlace = new ImageIcon("img/pepperoni_place.png");
+        gameAreaBackground = new ImageIcon("img/game_area_background.png");
 
         spriteCounter = 0;
         spriteNum = 0;
@@ -106,7 +108,7 @@ public class GameArea extends JPanel{
         //display = imgArr.get(spriteNum);
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
-        //background.paintIcon(this, graphics, 0, 0);
+        gameAreaBackground.paintIcon(this, graphics2D, 0, 0);
         //display.paintIcon(this, graphics, (int)xCoord, (int)yCoord);
         playerScoreBoard.paintComponent(graphics);
 
